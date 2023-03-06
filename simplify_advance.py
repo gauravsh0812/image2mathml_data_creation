@@ -138,9 +138,12 @@ def remove_hexComments(eqn):
 
 def cleaning_mml(eqn):
     eqn = remove_unecc_tokens(eqn)
+    print("removing uncc tokens: ", eqn)
     eqn = remove_additional_tokens(eqn)
+    print("removing add tokens: ", eqn)
     if "&#x" in eqn:
         eqn = remove_hexComments(eqn)
+        print("removing hex: ", eqn)
     return eqn
 
 def extract_inbetween_tokens(mml_eqn):
