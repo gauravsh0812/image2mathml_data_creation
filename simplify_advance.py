@@ -140,9 +140,9 @@ def remove_hexComments(eqn):
 
 def cleaning_mml(eqn):
     eqn = remove_unecc_tokens(eqn)
-    print("removing uncc tokens: ", eqn +"\n")
+    # print("removing uncc tokens: ", eqn +"\n")
     eqn = remove_additional_tokens(eqn)
-    print("removing add tokens: ", eqn +"\n")
+    # print("removing add tokens: ", eqn +"\n")
     if "&#x" in eqn:
         eqn = remove_hexComments(eqn)
         # print("removing hex: ", eqn +"\n")
@@ -207,5 +207,5 @@ def simp_adv(eqn):
     mml_eqn = cleaning_mml(eqn)
     # print("cleaning_mml: ", mml_eqn +"\n")
     mml_eqn = tokenize(mml_eqn)
-    # print("tokenize mml: ", mml_eqn +"\n")
+    print("tokenize mml: ", mml_eqn +"\n")
     return mml_eqn
