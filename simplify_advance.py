@@ -36,9 +36,9 @@ def remove_unecc_tokens(eqn):
     for e in eliminate:
         if e in eqn:
             c=count(eqn, e)
-            print(e,c)
             for _ in range(c):
                 idx = eqn.find(e)
+                print(e, idx)
                 # find the '<' just before the e
                 temp1 = eqn[:idx+1]
                 temp2 = eqn[idx+1:]
