@@ -67,7 +67,7 @@ def remove_additional_tokens(eqn):
     if 'mtext' in eqn:
         begin_mtext_pos = eqn.find('<mtext>')
         end_mtext_pos = eqn.find('<\mtext>')
-        eqn = eqn[:begin_mtext_pos] + eqn[:end_mtext_pos + len("<\metxt>")]
+        eqn = eqn[:begin_mtext_pos] + eqn[end_mtext_pos + len("<\metxt>"):]
 
         print("after mtext: ", eqn+"\n")
 
