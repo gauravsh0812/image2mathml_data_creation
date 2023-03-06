@@ -64,10 +64,10 @@ def remove_unecc_tokens(eqn):
     return eqn
 
 def remove_additional_tokens(eqn):
-    if 'mtext' in eqn:
-        mtext_pos = eqn.find('mtext')
-        eqn  = eqn.replace(eqn[mtext_pos-1:], ' </math>')
-        print("eqn after mtext remval: ", eqn)
+    # if 'mtext' in eqn:
+    #     mtext_pos = eqn.find('mtext')
+    #     eqn  = eqn.replace(eqn[mtext_pos-1:], ' </math>')
+    #     print("eqn after mtext remval: ", eqn)
 
     if 'mrow' in eqn:
         try:
