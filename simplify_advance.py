@@ -38,7 +38,7 @@ def remove_unecc_tokens(eqn):
             c=count(eqn, e)
             for _ in range(c):
                 idx = eqn.find(e)
-                print(e, idx)
+
                 # find the '<' just before the e
                 temp1 = eqn[:idx+1]
                 temp2 = eqn[idx+1:]
@@ -58,8 +58,7 @@ def remove_unecc_tokens(eqn):
                     eqn = temp1[:open_angle[-1]]+f' <{keep_token}>'+temp2[close_angle[0]+1:]
                 else:
                     eqn = temp1[:open_angle[-1]]+temp2[close_angle[0]+1:]
-                print(e)
-                print(eqn +"\n")
+
 
 
     return eqn
@@ -69,6 +68,8 @@ def remove_additional_tokens(eqn):
         begin_mtext_pos = eqn.find('<mtext>')
         end_mtext_pos = eqn.find('<\mtext>')
         eqn = eqn[:begin_mtext_pos] + eqn[:end_mtext_pos + len("<\metxt>")]
+
+        print("after mtext: ", eqn+"\n")
 
     if 'mrow' in eqn:
         try:
