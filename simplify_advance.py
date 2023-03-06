@@ -69,9 +69,6 @@ def remove_additional_tokens(eqn):
         for _ in range(c):
             e1, e2 = eqn.find("<mtext>"), eqn.find("</mtext>")
             eqn = eqn[:e1] + eqn[e2+len("</mtext>"):]
-            print(eqn + "\n")
-
-        print("after mtext: ", eqn+"\n")
 
     if 'mrow' in eqn:
         try:
