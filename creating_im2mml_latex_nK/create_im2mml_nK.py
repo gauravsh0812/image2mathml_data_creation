@@ -44,28 +44,27 @@ def MjxMML(eqn):
 
 def main():
 
-    formulas = open("/home/gauravs/data/img2mml_datasets/raw_datasets/im2latex-103K/formulas.norm.lst").readlines()
-    train = open("/home/gauravs/data/img2mml_datasets/raw_datasets/im2latex-103K/train.lst").readlines()
-    test = open("/home/gauravs/data/img2mml_datasets/raw_datasets/im2latex-103K/test.lst").readlines()
-    val = open("/home/gauravs/data/img2mml_datasets/raw_datasets/im2latex-103K/validate.lst").readlines()
+    formulas = open("img2mml_datasets/raw_datasets/im2latex-103K/formulas.norm.lst").readlines()
+    train = open("img2mml_datasets/raw_datasets/im2latex-103K/train.lst").readlines()
+    test = open("img2mml_datasets/raw_datasets/im2latex-103K/test.lst").readlines()
+    val = open("img2mml_datasets/raw_datasets/im2latex-103K/validate.lst").readlines()
 
-    formulas_mml = open("/home/gauravs/data/img2mml_datasets/opennmt_datasets/im2mml-100K/mml.lst", "w")
-    
+    formulas_mml = open("img2mml_datasets/opennmt_datasets/im2mml-100K/mml.lst", "w")
+
     count, rejected = 0,0
     for fidx, f in enumerate([train, test, val]):
         arr = ["train", "test", "validate"]
-        f_mml = open(f"/home/gauravs/data/img2mml_datasets/opennmt_datasets/im2mml-100K/{arr[fidx]}.lst", "w")
+        f_mml = open(f"img2mml_datasets/opennmt_datasets/im2mml-100K/{arr[fidx]}.lst", "w")
         print(f"working on {arr[fidx]}")
 
-        
         for i, v in enumerate(f):
             if i%10000 == 0: print(i)
-            
+
             idx, img, _ = v.split()
 
             latex = formulas[int(idx)]
 
-            mml = MjxMML(latex)                     
+            mml = MjxMML(latex)
 
             if len(mml) > 3:
                 mml = simp_basic(mml)
@@ -76,7 +75,7 @@ def main():
                 count += 1
             else:
                 rejected += 1
-    
+
     print("total rejected equations: ", rejected)
     print("total rendered equations: ", count)
 
