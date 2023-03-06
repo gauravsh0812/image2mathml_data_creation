@@ -200,5 +200,7 @@ def tokenize(mml_eqn):
 
 def simp_adv(eqn):
     mml_eqn = cleaning_mml(eqn)
+    print("cleaning_mml: ", mml_eqn)
     mml_eqn = tokenize(mml_eqn)
+    print("tokenize mml: ", mml_eqn)
     return mml_eqn
