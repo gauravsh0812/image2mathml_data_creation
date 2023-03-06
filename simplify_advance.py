@@ -67,7 +67,7 @@ def remove_additional_tokens(eqn):
     if 'mtext' in eqn:
         mtext_pos = eqn.find('mtext')
         eqn  = eqn.replace(eqn[mtext_pos-1:], ' </math>')
-        
+
     if 'mrow' in eqn:
         try:
             eqn_arr = eqn.split()
