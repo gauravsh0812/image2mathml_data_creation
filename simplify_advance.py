@@ -65,9 +65,13 @@ def remove_unecc_tokens(eqn):
 
 def remove_additional_tokens(eqn):
     if 'mtext' in eqn:
-        begin_mtext_pos = eqn.find('<mtext>')
-        end_mtext_pos = eqn.find('<\mtext>')
-        eqn = eqn[:begin_mtext_pos] + eqn[end_mtext_pos + len("<\metxt>"):]
+        c=count(eqn, "mtext")
+        for _ in c:
+            begin_mtext_pos = eqn.find('<mtext>')
+            end_mtext_pos = eqn.find('<\mtext>')
+            print(begin_mtext_pos, end_mtext_pos)
+            eqn = eqn[:begin_mtext_pos] + eqn[end_mtext_pos + len("<\metxt>"):]
+            print(eqn + "\n")
 
         print("after mtext: ", eqn+"\n")
 
@@ -146,7 +150,7 @@ def cleaning_mml(eqn):
     print("removing add tokens: ", eqn +"\n")
     if "&#x" in eqn:
         eqn = remove_hexComments(eqn)
-        print("removing hex: ", eqn +"\n")
+        # print("removing hex: ", eqn +"\n")
     return eqn
 
 def extract_inbetween_tokens(mml_eqn):
@@ -206,7 +210,7 @@ def tokenize(mml_eqn):
 
 def simp_adv(eqn):
     mml_eqn = cleaning_mml(eqn)
-    print("cleaning_mml: ", mml_eqn +"\n")
+    # print("cleaning_mml: ", mml_eqn +"\n")
     mml_eqn = tokenize(mml_eqn)
-    print("tokenize mml: ", mml_eqn +"\n")
+    # print("tokenize mml: ", mml_eqn +"\n")
     return mml_eqn
