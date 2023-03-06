@@ -27,7 +27,7 @@ def isfrac(num):
     return (re.match("[|-|+]?\d+\/\d+$", num))
 
 def remove_unecc_tokens(eqn):
-    eliminate = ['mspace', 'mtable', 'mtext', 'mathvariant', 'class', 'mpadded',
+    eliminate = ['mspace', 'mtable', 'mathvariant', 'class', 'mpadded',
                 'symmetric', 'fence', 'rspace', 'lspace', 'displaystyle', 'scriptlevel',
                 'stretchy','form', 'movablelimits', 'maxsize', 'minsize', 'linethickness', 'mstyle']
 
@@ -65,10 +65,10 @@ def remove_unecc_tokens(eqn):
     return eqn
 
 def remove_additional_tokens(eqn):
-    # if 'mtext' in eqn:
-    #     mtext_pos = eqn.find('mtext')
-    #     eqn  = eqn.replace(eqn[mtext_pos-1:], ' </math>')
-    #     print("eqn after mtext remval: ", eqn)
+    if 'mtext' in eqn:
+        begin_mtext_pos = eqn.find('<mtext>')
+        end_mtext_pos = eqn.find('<\mtext>')
+        eqn = eqn[:begin_mtext_pos] + eqn[:end_mtext_pos + len("<\metxt>")]
 
     if 'mrow' in eqn:
         try:
