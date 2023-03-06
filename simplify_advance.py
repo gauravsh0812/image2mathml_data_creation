@@ -66,7 +66,7 @@ def remove_unecc_tokens(eqn):
 def remove_additional_tokens(eqn):
     if 'mtext' in eqn:
         c=count(eqn, "mtext")
-        for _ in c:
+        for _ in range(c):
             begin_mtext_pos = eqn.find('<mtext>')
             end_mtext_pos = eqn.find('<\mtext>')
             print(begin_mtext_pos, end_mtext_pos)
