@@ -57,4 +57,4 @@ new_mml.close()
 new_latex.close()
 
 saving index_dict
-json.dump(index_dict, open("/home/gauravs/data/img2mml_datasets/raw_datasets/our_data_100K/index_length_dist.json", "w"))
+json.dump(index_dict, open("img2mml_datasets/raw_datasets/our_data_100K/index_length_dist.json", "w"))

@@ -1,8 +1,8 @@
 import json
 
-im2latex_103K = open("/home/gauravs/data/img2mml_datasets/raw_datasets/im2latex-103K/formulas.norm.lst").readlines()
-im2latex_100K = open("/home/gauravs/data/img2mml_datasets/opennmt_datasets/im2latex-100K/latex.lst").readlines()
-im2mml_100K = open("/home/gauravs/data/img2mml_datasets/opennmt_datasets/im2mml-100K/mml.lst").readlines()
+im2latex_103K = open("img2mml_datasets/raw_datasets/im2latex-103K/formulas.norm.lst").readlines()
+im2latex_100K = open("img2mml_datasets/opennmt_datasets/im2latex-100K/latex.lst").readlines()
+im2mml_100K = open("img2mml_datasets/opennmt_datasets/im2mml-100K/mml.lst").readlines()
 
 im2latex_103K_dict = dict()
 im2latex_100K_dict = dict()
@@ -23,7 +23,7 @@ for i,v in enumerate([im2latex_103K, im2latex_100K, im2mml_100K]):
     keys = d.keys()
 
     for l in v:
-                
+
         length = len(l.split())
 
         # finding which bin it belongs to
@@ -32,11 +32,11 @@ for i,v in enumerate([im2latex_103K, im2latex_100K, im2mml_100K]):
                 begin, end = k.split("-")
                 if (length > int(begin)) and (length <= int(end)):
                     d[k] += 1
-                    break 
+                    break
             else:
                 d["350+"] += 1
-    
+
     # save the distribution
-    if i==0: json.dump(d, open("/home/gauravs/data/img2mml_datasets/opennmt_datasets/distributions/im2latex-103K-length-dist.json", "w"))
-    elif i==1: json.dump(d, open("/home/gauravs/data/img2mml_datasets/opennmt_datasets/distributions/im2latex-100K-length-dist.json", "w"))
-    else: json.dump(d, open("/home/gauravs/data/img2mml_datasets/opennmt_datasets/distributions/im2mml-100K-length-dist.json", "w"))
+    if i==0: json.dump(d, open("img2mml_datasets/opennmt_datasets/distributions/im2latex-103K-length-dist.json", "w"))
+    elif i==1: json.dump(d, open("img2mml_datasets/opennmt_datasets/distributions/im2latex-100K-length-dist.json", "w"))
+    else: json.dump(d, open("img2mml_datasets/opennmt_datasets/distributions/im2mml-100K-length-dist.json", "w"))
