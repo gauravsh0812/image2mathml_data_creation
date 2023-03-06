@@ -58,8 +58,9 @@ def remove_unecc_tokens(eqn):
                     eqn = temp1[:open_angle[-1]]+f' <{keep_token}>'+temp2[close_angle[0]+1:]
                 else:
                     eqn = temp1[:open_angle[-1]]+temp2[close_angle[0]+1:]
-        print(e)
-        print(eqn +"\n")
+                print(e)
+                print(eqn +"\n")
+
 
     return eqn
 
