@@ -319,6 +319,7 @@ def extract_inbetween_tokens(mml_eqn):
     return mmls3
 
 def tokenize(mml_eqn):
+    print("befopre tokenize: ", mml_eqn +"\n")
     mml_split = re.split('>|<',mml_eqn)
     tokenized_mml=''
 
