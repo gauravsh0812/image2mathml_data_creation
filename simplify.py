@@ -322,6 +322,7 @@ def tokenize(mml_eqn):
     tokenized_mml=''
 
     inbetween_tokens = extract_inbetween_tokens(mml_eqn)
+    print(inbetween_tokens)
 
     for token in mml_split:
         token = token.strip()
