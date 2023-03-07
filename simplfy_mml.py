@@ -369,9 +369,9 @@ def tokenize(mml_eqn):
             elif token in inbetween_tokens:
                 tokenized_mml += token
 
-            elif " " in token:  # l o g, s i n, c o s, etc.
+            elif len(token.replace(" ", "")) < len(token):  # l o g, s i n, c o s, etc.
                 tokenized_mml += token
-                
+
             else:
                 tokenized_mml += ' <' + token +'> '
 
