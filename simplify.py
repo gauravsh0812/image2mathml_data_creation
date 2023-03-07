@@ -311,7 +311,7 @@ def extract_inbetween_tokens(mml_eqn):
     for i in mmlss:
         if '&#x' not in i:
             imml = [im for im in re.split('>|<',i) if im != '']
-            if len(imml)==3 and imml[-1] != '/math':
+            if len(imml.replace(" ", ""))==3 and imml[-1] != '/math':
                 if len(imml[1])>1:
                     mmls3.append(imml[1])
 
