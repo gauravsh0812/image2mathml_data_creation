@@ -312,19 +312,17 @@ def extract_inbetween_tokens(mml_eqn):
         if '&#x' not in i:
             imml = [im for im in re.split('>|<',i) if im != '']
             print("imml: ", imml)
-            if len(imml)>=3 and imml[-1] != '/math':
+            if len(imml)==3 and imml[-1] != '/math':
                 if len(imml[1])>1:
                     mmls3.append(imml[1])
 
     return mmls3
 
 def tokenize(mml_eqn):
-    print("befopre tokenize: ", mml_eqn +"\n")
     mml_split = re.split('>|<',mml_eqn)
     tokenized_mml=''
 
     inbetween_tokens = extract_inbetween_tokens(mml_eqn)
-    print(inbetween_tokens)
 
     for token in mml_split:
         token = token.strip()
@@ -358,6 +356,7 @@ def tokenize(mml_eqn):
             elif token in inbetween_tokens:
                 tokenized_mml += token
             else:
+                print(token)
                 tokenized_mml += ' <' + token +'> '
 
     return tokenized_mml.strip()
