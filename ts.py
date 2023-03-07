@@ -45,6 +45,7 @@ def main():
 
     latex = open("check.lst").readlines()
     for l in latex:
+        print(l + "\n")
         mml = MjxMML(l)
         print(mml+"\n")
         print(simplification(mml)+"\n")
