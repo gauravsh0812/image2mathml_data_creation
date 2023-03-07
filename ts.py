@@ -43,7 +43,7 @@ def MjxMML(eqn):
 
 def main():
 
-    l = open("check.lst").readlines()[2]
+    l = open("check.lst").readlines()[0]
     mml = MjxMML(l)
     print(mml+"\n")
     print(simplification(mml)+"\n")
