@@ -58,7 +58,7 @@ def simplification(mml_org):
     ]
 
     ## Attributes that can be removed
-        attr_tobe_removed = [
+    attr_tobe_removed = [
             "class",
             "id",
             "style",
