@@ -3,20 +3,6 @@
 import re, json, argparse
 import subprocess, os
 
-# opening config file
-parser = argparse.ArgumentParser()
-parser.add_argument(
-    "--config",
-    help="configuration file for paths and hyperparameters",
-    default="configs/ourmml_xfmer_config.json",
-)
-
-args = parser.parse_args()
-
-with open(args.config, "r") as cfg:
-    config = json.load(cfg)
-
-
 def simplification(mml_org):
 
     """ simplify the mathml"""
@@ -372,19 +358,3 @@ def tokenize(mml_eqn):
                 tokenized_mml += ' <' + token +'> '
 
     return tokenized_mml
-
-
-if __name__ == "__main__":
-
-    data_path = f"{config['data_path']}/{config['dataset_type']}"
-    original_mml = open(f"{data_path}/original_mml.lst").readlines()
-    modified_mml = open(f"{data_path}/mml.lst", "w")
-
-    for mml in original_mml:
-        mml_mod = simplification(mml)
-
-        # writing
-        if "\n" not in mml_mod:
-            modified_mml.write(mml_mod + "\n")
-
-    modified_mml.close()
