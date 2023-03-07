@@ -209,7 +209,7 @@ def remove_unecc_tokens(eqn):
                 filtered = temp1[open_angle[-1]:]+temp2[:close_angle[0]+1]
                 flag = False
                 for k in keep:
-                    if k in filtered:
+                    if ("<"+k) in filtered:
                           flag=True
                           if e in ["movablelimits", "minsize"] and k in ["mo", "mi"]:
                               true_k = [k for f in filtered.split() if k in f and e not in f]
