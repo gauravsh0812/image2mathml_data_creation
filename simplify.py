@@ -26,7 +26,7 @@ def simplification(mml_org):
     elements = [
         "mrow",
         "mi",
-        "<mn",
+        "mn",
         "mo",
         "ms",
         "mtext",
@@ -102,6 +102,7 @@ def simplification(mml_org):
         attr_tobe_checked
     )
 
+    print("mml_mod: ", mml_mod+"\n")
     mml_mod = cleaning_mml(mml_mod)
     mml_mod = tokenize(mml_mod)
 
