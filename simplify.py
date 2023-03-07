@@ -104,7 +104,9 @@ def simplification(mml_org):
 
     print("mml_mod: ", mml_mod+"\n")
     mml_mod = cleaning_mml(mml_mod)
+    print("mml_mod after cleaning_mml: ", mml_mod+"\n")
     mml_mod = tokenize(mml_mod)
+    
 
     return mml_mod
 
