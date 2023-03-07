@@ -43,13 +43,13 @@ def MjxMML(eqn):
 
 def main():
 
-    latex = open("check.lst").readlines()
-    for l in latex:
-        print(l + "\n")
-        mml = MjxMML(l)
-        print(mml+"\n")
-        print(simplification(mml)+"\n")
-        print("========"*5)
+    latex = open("check.lst").readlines()[0]
+
+    print(l + "\n")
+    mml = MjxMML(l)
+    print(mml+"\n")
+    print(simplification(mml)+"\n")
+    print("========"*5)
 
     #train = open("/home/gauravs/data/img2mml_datasets/raw_datasets/im2latex-103K/train.lst").readlines()
     #test = open("/home/gauravs/data/img2mml_datasets/raw_datasets/im2latex-103K/test.lst").readlines()
