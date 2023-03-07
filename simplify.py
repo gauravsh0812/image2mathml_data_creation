@@ -355,6 +355,6 @@ def tokenize(mml_eqn):
             elif token in inbetween_tokens:
                 tokenized_mml += token
             else:
-                tokenized_mml += ' <' + token +'> '
+                tokenized_mml += '<' + token +'> '
 
     return tokenized_mml
