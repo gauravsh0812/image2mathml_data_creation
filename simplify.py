@@ -26,7 +26,7 @@ def simplification(mml_org):
     elements = [
         "mrow",
         "mi",
-        "mn",
+        "<mn",
         "mo",
         "ms",
         "mtext",
@@ -119,7 +119,7 @@ def attribute_definition(
 
         # Getting indices of the position of the element in the MML code
         position = [
-            i for i in re.finditer(r"\b%s\b" % re.escape("<"+ele), mml_code)
+            i for i in re.finditer(r"\b%s\b" % re.escape(ele), mml_code)
         ]
 
         for p in position:
