@@ -2,8 +2,7 @@
 import requests
 import subprocess, os
 import json
-from simplify_basic import simp_basic
-from simplify_advance import simp_adv
+from simplify import simplification
 from datetime import datetime
 
 
@@ -14,7 +13,7 @@ print("Starting at:  ", start_time)
 
 
 def CleaningMML(res):
-    # Removing "\ and /" at the begining and at the en
+    # Removing "\ and /" at the begining and at the end
     res = res[res.find("<"):]
     res = res[::-1][res[::-1].find(">"):]
     res = res[::-1]
@@ -67,8 +66,7 @@ def main():
             mml = MjxMML(latex)
 
             if len(mml) > 3:
-                mml = simp_basic(mml)
-                mml = simp_adv(mml)
+                mml = simplification(mml)
 
                 formulas_mml.write(mml + "\n")
                 f_mml.write(f"{count} {img} basic" + "\n")
