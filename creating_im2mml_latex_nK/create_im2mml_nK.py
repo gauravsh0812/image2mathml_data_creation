@@ -41,7 +41,7 @@ def MjxMML(eqn):
     return MML
 
 
-def main():
+def latex2mml():
 
     formulas = open("img2mml_datasets/raw_datasets/im2latex-103K/formulas.norm.lst").readlines()
     train = open("img2mml_datasets/raw_datasets/im2latex-103K/train.lst").readlines()
