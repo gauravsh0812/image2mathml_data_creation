@@ -77,6 +77,9 @@ def latex2mml():
                 count += 1
             else:
                 rejected += 1
+        f_mml.close()
 
+    org_mml.close()
+    simp_mml.close()
     print("total rejected equations: ", rejected)
     print("total rendered equations: ", count)

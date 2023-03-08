@@ -26,3 +26,5 @@ def im2mml_2_im2latex():
             latex_formulas_nK.write(latex_eqn)
             t_im2latex.write(f"{count} {img} basic \n")
             count+=1
+
+    t_im2latex.close()
