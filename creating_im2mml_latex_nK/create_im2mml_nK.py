@@ -48,7 +48,8 @@ def latex2mml():
     test = open("img2mml_datasets/raw_datasets/im2latex-103K/test.lst").readlines()
     val = open("img2mml_datasets/raw_datasets/im2latex-103K/validate.lst").readlines()
 
-    formulas_mml = open("img2mml_datasets/opennmt_datasets/im2mml-100K/mml.lst", "w")
+    org_mml = open("img2mml_datasets/opennmt_datasets/im2mml-100K/original_mml.lst", "w")
+    simp_mml = open("img2mml_datasets/opennmt_datasets/im2mml-100K/mml.lst", "w")
 
     count, rejected = 0,0
     for fidx, f in enumerate([train, test, val]):
@@ -66,9 +67,12 @@ def latex2mml():
             mml = MjxMML(latex)
 
             if len(mml) > 3:
+
+                simp_mml.write(mml + "\n")
+
                 mml = simplification(mml)
 
-                formulas_mml.write(mml + "\n")
+                simp_mml.write(mml + "\n")
                 f_mml.write(f"{count} {img} basic" + "\n")
                 count += 1
             else:
