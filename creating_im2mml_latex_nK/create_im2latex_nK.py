@@ -16,7 +16,13 @@ def im2mml_2_im2latex():
         print(t)
         t_im2mml = open(f"img2mml_datasets/opennmt_datasets/im2mml-100K/{t}.lst").readlines()
         t_im2latex_org = open(f"img2mml_datasets/raw_datasets/im2latex-103K/{t}.lst").readlines()
+
+        # combined file
         t_im2latex = open(f"img2mml_datasets/opennmt_datasets/im2latex-100K/{t}.lst", "w")
+
+        # src  and tgt file
+        t_im2latex_src = open(f"img2mml_datasets/opennmt_datasets/im2latex-100K/src-{t}.lst", "w")
+        t_im2latex_tgt = open(f"img2mml_datasets/opennmt_datasets/im2latex-100K/tgt-{t}.lst", "w")
 
         for i,v in enumerate(t_im2mml):
             if i%10000 == 0: print(i)
@@ -25,6 +31,8 @@ def im2mml_2_im2latex():
             latex_eqn = latex_formulas_original[latex_index]
             latex_formulas_nK.write(latex_eqn)
             t_im2latex.write(f"{count} {img} basic \n")
+            t_im2latex_src.write(f"{img}.png\n")
+            t_im2latex_tgt.write(f"{latex_eqn} \n")
             count+=1
 
     t_im2latex.close()
