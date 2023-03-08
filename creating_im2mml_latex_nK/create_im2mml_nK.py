@@ -68,7 +68,7 @@ def latex2mml():
 
             if len(mml) > 3:
 
-                simp_mml.write(mml + "\n")
+                org_mml.write(mml + "\n")
 
                 mml = simplification(mml)
 
