@@ -76,6 +76,3 @@ def main():
 
     print("total rejected equations: ", rejected)
     print("total rendered equations: ", count)
-
-if __name__ == "__main__":
-    main()
