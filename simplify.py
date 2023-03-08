@@ -102,9 +102,7 @@ def simplification(mml_org):
         attr_tobe_checked
     )
 
-    print("mml_mod: ", mml_mod+"\n")
     mml_mod = cleaning_mml(mml_mod)
-    print("mml_mod after cleaning_mml: ", mml_mod+"\n")
     mml_mod = tokenize(mml_mod)
 
 
@@ -302,9 +300,7 @@ def remove_hexComments(eqn):
 
 def cleaning_mml(eqn):
     eqn = remove_unecc_tokens(eqn)
-    print("mml_mod cleaning_mml uncc : ", eqn+"\n")
     eqn = remove_additional_tokens(eqn)
-    print("mml_mod cleaning_mml add: ", eqn+"\n")
     if "&#x" in eqn:
         eqn = remove_hexComments(eqn)
     return eqn
