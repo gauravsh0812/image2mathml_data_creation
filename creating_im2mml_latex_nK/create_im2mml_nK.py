@@ -55,6 +55,9 @@ def latex2mml():
     for fidx, f in enumerate([train, test, val]):
         arr = ["train", "test", "validate"]
         f_mml = open(f"img2mml_datasets/opennmt_datasets/im2mml-100K/{arr[fidx]}.lst", "w")
+        f_mml_src = open(f"img2mml_datasets/opennmt_datasets/im2mml-100K/src-{arr[fidx]}.lst", "w")
+        f_mml_tgt = open(f"img2mml_datasets/opennmt_datasets/im2mml-100K/tgt-{arr[fidx]}.lst", "w")
+
         print(f"working on {arr[fidx]}")
 
         for i, v in enumerate(f):
@@ -74,6 +77,8 @@ def latex2mml():
 
                 simp_mml.write(mml + "\n")
                 f_mml.write(f"{count} {img} basic" + "\n")
+                f_mml_src.write(f"{img}\n")
+                f_mml_tgt.write(f"{mml}\n")
                 count += 1
             else:
                 rejected += 1
