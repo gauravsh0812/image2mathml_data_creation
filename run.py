@@ -7,6 +7,4 @@ if __name__=="__main__":
     l2m()
 
     # grab the corresponding latex from im2latex-103K
-    m2l()
-
-    
+    # m2l()
