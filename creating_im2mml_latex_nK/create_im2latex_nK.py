@@ -31,8 +31,8 @@ def im2mml_2_im2latex():
             latex_eqn = latex_formulas_original[latex_index]
             latex_formulas_nK.write(latex_eqn)
             t_im2latex.write(f"{count} {img} basic \n")
-            t_im2latex_src.write(f"{img}.png\n")
-            t_im2latex_tgt.write(f"{latex_eqn} \n")
+            t_im2latex_src.write(f"{img}.png \n")
+            t_im2latex_tgt.write(f"{latex_eqn}")
             count+=1
 
     t_im2latex.close()
