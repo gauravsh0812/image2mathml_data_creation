@@ -16,7 +16,7 @@ def create_data():
         f = open(f"img2mml_datasets/opennmt_datasets/im2mml-100K/{af}.lst").readlines()
         for i in f:
             idx, img, _ = i.split()
-            if idx%10000==0: print(idx)
+            if int(idx)%10000==0: print(idx)
             src = f"img2mml_datasets/opennmt_datasets/im2mml-100K/images_processed/{img}.png"
             dst = f"img2mml_datasets/opennmt_datasets/im2mml-100K/images_for_cnn_xfmer/{idx}.png"
             CP(src, dst)
