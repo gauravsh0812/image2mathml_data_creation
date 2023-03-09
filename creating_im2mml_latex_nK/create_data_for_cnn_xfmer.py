@@ -1,4 +1,4 @@
-import shutil.copyfile as CP
+import shutils.copyfile as CP
 import os
 
 
