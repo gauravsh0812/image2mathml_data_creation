@@ -9,7 +9,7 @@ if __name__=="__main__":
     # render im2mml from im2latex-103K for opennmt
     if cond == "opennmt_im2mml":
         latex2mml()
-    if cond == "opennmt_im2latex";
+    if cond == "opennmt_im2latex":
         im2mml_2_im2latex()
 
     # grab the corresponding latex from im2latex-103K
