@@ -1,12 +1,12 @@
 
 def im2mml_2_im2latex():
-    latex_formulas_original = open("img2mml_datasets/raw_datasets/im2latex-103K/formulas.norm.lst").readlines()
-    latex_formulas_nK = open(f"img2mml_datasets/opennmt_datasets/im2latex-100K/latex.lst", "w")
+    latex_formulas_original = open("data/im2latex-103K/formulas.norm.lst").readlines()
+    latex_formulas_nK = open(f"data/im2latex-100K/latex.lst", "w")
 
     # creating the dictionary for the index:image_name for original im2latex
     idx_img = dict()
     for t in ["train", "test", "validate"]:
-        t_im2latex_org = open(f"img2mml_datasets/raw_datasets/im2latex-103K/{t}.lst").readlines()
+        t_im2latex_org = open(f"data/im2latex-103K/{t}.lst").readlines()
         for i in t_im2latex_org:
             idx, img, _ = i.split()
             idx_img[img] = idx
@@ -14,15 +14,15 @@ def im2mml_2_im2latex():
     count = 0
     for t in ["train", "test", "validate"]:
         print(t)
-        t_im2mml = open(f"img2mml_datasets/opennmt_datasets/im2mml-100K/{t}.lst").readlines()
-        t_im2latex_org = open(f"img2mml_datasets/raw_datasets/im2latex-103K/{t}.lst").readlines()
+        t_im2mml = open(f"data/opennmt/im2mml-100K/{t}.lst").readlines()
+        t_im2latex_org = open(f"data/im2latex-103K/{t}.lst").readlines()
 
         # combined file
-        t_im2latex = open(f"img2mml_datasets/opennmt_datasets/im2latex-100K/{t}.lst", "w")
+        t_im2latex = open(f"data/opennmt/im2latex-100K/{t}.lst", "w")
 
         # src  and tgt file
-        t_im2latex_src = open(f"img2mml_datasets/opennmt_datasets/im2latex-100K/src-{t}.lst", "w")
-        t_im2latex_tgt = open(f"img2mml_datasets/opennmt_datasets/im2latex-100K/tgt-{t}.lst", "w")
+        t_im2latex_src = open(f"data/opennmt/im2latex-100K/src-{t}.lst", "w")
+        t_im2latex_tgt = open(f"data/opennmt/im2latex-100K/tgt-{t}.lst", "w")
 
         for i,v in enumerate(t_im2mml):
             if i%10000 == 0: print(i)
