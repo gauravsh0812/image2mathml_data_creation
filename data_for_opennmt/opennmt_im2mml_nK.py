@@ -59,7 +59,7 @@ def restart_mathjax_server():
 
 def MjxMML(eqn):
 
-    global pause_event
+    # global pause_event
 
     # Define the webservice address
     webservice = "http://localhost:8081"
