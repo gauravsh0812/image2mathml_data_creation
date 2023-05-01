@@ -84,7 +84,7 @@ def MjxMML(eqn):
             r"<mi>&#x0278;<!-- ɸ --></mi>",
         )
         mml = correct_phi(mml)
-
+        equation_counter.value += 1
         # To avoid the buffer issue from MathJax, restart the service once processing 1000 equations
         if equation_counter.value % 1000 == 0:
             pause_event.clear()
