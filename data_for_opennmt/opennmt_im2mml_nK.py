@@ -4,6 +4,7 @@ import subprocess, os
 import json
 from simplify import simplification
 from datetime import datetime
+import multiprocessing
 from multiprocessing import Pool, Lock, TimeoutError, Event
 
 
