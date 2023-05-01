@@ -1,6 +1,7 @@
 # CONVERT LaTeX EQUATION TO MathML CODE USING MathJax
 import requests
 import subprocess, os
+import time
 import json
 from simplify import simplification
 from datetime import datetime
