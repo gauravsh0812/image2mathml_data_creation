@@ -109,8 +109,8 @@ def latex2mml():
     test = open("data/im2latex-103K/test.lst").readlines()
     val = open("data/im2latex-103K/validate.lst").readlines()
 
-    org_mml = open("img2mml_datasets/opennmt_datasets/im2mml-100K/original_mml.lst", "w")
-    simp_mml = open("img2mml_datasets/opennmt_datasets/im2mml-100K/mml.lst", "w")
+    org_mml = open("data/im2mml-100K/original_mml.lst", "w")
+    simp_mml = open("data/im2mml-100K/mml.lst", "w")
 
     count, rejected = 0,0
     for fidx, f in enumerate([train, test, val]):
