@@ -95,7 +95,6 @@ def MjxMML(eqn):
         else:
             pause_event.set()
 
-        lock.release()
         pause_event.wait()
 
         return MML
