@@ -72,7 +72,7 @@ def MjxMML(eqn):
     )
     if not "FAILED" in res.content.decode("utf-8"):
         # Cleaning and Dumping the MathML strings to JSON file
-        MML = CleaningMML(res.text)
+        mml = CleaningMML(res.text)
         # Replacing the wrong generation from MathJax
         mml = re.sub("\s+", " ", mml)
         mml = mml.replace(
