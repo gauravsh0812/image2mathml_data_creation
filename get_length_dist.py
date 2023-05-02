@@ -22,7 +22,6 @@ def get_distribution():
         for r in range(0,350, 50):
             begin = r
             end = r+50
-            print(begin, end)
             d[f"{begin}-{end}"] = 0
         d["350+"] = 0
 
@@ -31,6 +30,7 @@ def get_distribution():
         for l in v:
 
             length = len(l.split())
+            print(length)
 
             # finding which bin it belongs to
             for k in keys:
