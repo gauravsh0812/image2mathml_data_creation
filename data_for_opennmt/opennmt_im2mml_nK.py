@@ -148,7 +148,7 @@ def latex2mml():
                     my_timer.start()
                     stdout, stderr = output.communicate()
 
-                    print("stdout, stderr: ", stdout, stderr, output)
+                    # print("stdout, stderr: ", stdout, stderr, output)
 
                     org_mml.write(mml + "\n")
                     # simp_mml.write(open("mml_mod.txt").readlines()[0].strip() + "\n")
