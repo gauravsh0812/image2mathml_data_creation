@@ -128,20 +128,31 @@ def latex2mml():
             latex = formulas[int(idx)]
 
             mml = MjxMML(latex)
+            mml.write(open("smr.txt", "w"))
 
             if mml != None:
-                org_mml.write(mml + "\n")
+                cwd = os.getcwd()
+                cmd = ["python", f"{cwd}/simplify.py"]
+                output = subprocess.Popen(
+                    cmd, stderr=subprocess.PIPE, stdout=subprocess.PIPE
+                )
+                my_timer = Timer(5, kill, [output])
 
-                mml = simplification(mml)
+                try:
+                    my_timer.start()
+                    stdout, stderr = output.communicate()
+                    simp_mml.write(mml + "\n")
+                    f_mml.write(f"{count} {img} basic" + "\n")
+                    f_mml_src.write(f"{img}\n")
+                    f_mml_tgt.write(f"{mml}\n")
+                    count += 1
 
-                simp_mml.write(mml + "\n")
-                f_mml.write(f"{count} {img} basic" + "\n")
-                f_mml_src.write(f"{img}\n")
-                f_mml_tgt.write(f"{mml}\n")
-                count += 1
+                except:
+                    rejected += 1
 
-            else:
-                rejected += 1
+                finally:
+                    my_timer.cancel()
+
 
         f_mml.close()
 
