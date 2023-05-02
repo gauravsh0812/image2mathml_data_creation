@@ -3,7 +3,7 @@ import requests
 import subprocess, os
 import time, re
 import json
-from simplify import simplification
+# from simplify import simplification
 from datetime import datetime
 import multiprocessing
 from threading import Timer
@@ -138,30 +138,30 @@ def latex2mml():
                 open("mml_org.txt", "w").write(mml)
                 cwd = os.getcwd()
                 cmd = ["python", f"{cwd}/simplify.py"]
-                output = subprocess.run(cmd)
-                # output = subprocess.Popen(
-                #     cmd, stderr=subprocess.PIPE, stdout=subprocess.PIPE
-                # )
-                # my_timer = Timer(5, kill, [output])
-                #
-                # # try:
-                # my_timer.start()
-                # stdout, stderr = output.communicate()
+                # output = subprocess.run(cmd)
+                output = subprocess.Popen(
+                    cmd, stderr=subprocess.PIPE, stdout=subprocess.PIPE
+                )
+                my_timer = Timer(5, kill, [output])
 
-                # print("stdout, stderr: ", stdout, stderr, output)
+                try:
+                    my_timer.start()
+                    stdout, stderr = output.communicate()
 
-                org_mml.write(mml + "\n")
-                # simp_mml.write(open("mml_mod.txt").readlines()[0].strip() + "\n")
-                f_mml.write(f"{count} {img} basic" + "\n")
-                f_mml_src.write(f"{img}\n")
-                f_mml_tgt.write(f"{mml}\n")
-                count += 1
+                    print("stdout, stderr: ", stdout, stderr, output)
 
-                # except:
-                #     rejected += 1
-                #
-                # finally:
-                # my_timer.cancel()
+                    org_mml.write(mml + "\n")
+                    # simp_mml.write(open("mml_mod.txt").readlines()[0].strip() + "\n")
+                    f_mml.write(f"{count} {img} basic" + "\n")
+                    f_mml_src.write(f"{img}\n")
+                    f_mml_tgt.write(f"{mml}\n")
+                    count += 1
+
+                except:
+                    rejected += 1
+
+                finally:
+                    my_timer.cancel()
 
 
         f_mml.close()

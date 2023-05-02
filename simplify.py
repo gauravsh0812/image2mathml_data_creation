@@ -469,4 +469,5 @@ def tokenize(mml_eqn):
 
     return tokenized_mml.strip()
 
-simplification()
+if __name__ == "__main__":
+    simplification()
