@@ -1,42 +1,47 @@
-import json
+import json, os
 
-im2latex_103K = open("img2mml_datasets/raw_datasets/im2latex-103K/formulas.norm.lst").readlines()
-im2latex_100K = open("img2mml_datasets/opennmt_datasets/im2latex-100K/latex.lst").readlines()
-im2mml_100K = open("img2mml_datasets/opennmt_datasets/im2mml-100K/mml.lst").readlines()
+def get_dist():
+    im2latex_103K = open("data/im2latex-103K/formulas.norm.lst").readlines()
+    im2latex_100K = open("data/opennmt/im2latex-100K/latex.lst").readlines()
+    im2mml_100K = open("data/opennmt/im2mml-100K/mml.lst").readlines()
 
-im2latex_103K_dict = dict()
-im2latex_100K_dict = dict()
-im2mml_100K_dict = dict()
+    p = "data/opennmt/distributions"
+    if not os.path.exists(p):
+        os.mkdir(p)
 
-for i,v in enumerate([im2latex_103K, im2latex_100K, im2mml_100K]):
-    if i == 0: d = im2latex_103K_dict
-    elif i == 1: d = im2latex_100K_dict
-    else: d = im2mml_100K_dict
+    im2latex_103K_dict = dict()
+    im2latex_100K_dict = dict()
+    im2mml_100K_dict = dict()
 
-    # initialize dict
-    for r in range(0,350, 50):
-        begin = r
-        end = r+50
-        d[f"{begin}-{end}"] = 0
-    d["350+"] = 0
+    for i,v in enumerate([im2latex_103K, im2latex_100K, im2mml_100K]):
+        if i == 0: d = im2latex_103K_dict
+        elif i == 1: d = im2latex_100K_dict
+        else: d = im2mml_100K_dict
 
-    keys = d.keys()
+        # initialize dict
+        for r in range(0,350, 50):
+            begin = r
+            end = r+50
+            d[f"{begin}-{end}"] = 0
+        d["350+"] = 0
 
-    for l in v:
+        keys = d.keys()
 
-        length = len(l.split())
+        for l in v:
 
-        # finding which bin it belongs to
-        for k in keys:
-            if k != "350+":
-                begin, end = k.split("-")
-                if (length > int(begin)) and (length <= int(end)):
-                    d[k] += 1
-                    break
-            else:
-                d["350+"] += 1
+            length = len(l.split())
 
-    # save the distribution
-    if i==0: json.dump(d, open("img2mml_datasets/opennmt_datasets/distributions/im2latex-103K-length-dist.json", "w"))
-    elif i==1: json.dump(d, open("img2mml_datasets/opennmt_datasets/distributions/im2latex-100K-length-dist.json", "w"))
-    else: json.dump(d, open("img2mml_datasets/opennmt_datasets/distributions/im2mml-100K-length-dist.json", "w"))
+            # finding which bin it belongs to
+            for k in keys:
+                if k != "350+":
+                    begin, end = k.split("-")
+                    if (length > int(begin)) and (length <= int(end)):
+                        d[k] += 1
+                        break
+                else:
+                    d["350+"] += 1
+
+        # save the distribution
+        if i==0: json.dump(d, open("data/opennmt/distributions/im2latex-103K-length-dist.json", "w"))
+        elif i==1: json.dump(d, open("data/opennmt/distributions/im2latex-100K-length-dist.json", "w"))
+        else: json.dump(d, open("data/opennmt/distributions/im2mml-100K-length-dist.json", "w"))
