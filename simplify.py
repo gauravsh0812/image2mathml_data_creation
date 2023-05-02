@@ -11,7 +11,7 @@ def simplification():
 
     mml_org = open("mml_org.txt").readlines()[0].strip()
 
-    print("in simplify")
+    # print("in simplify")
 
     # Removing multiple backslashes
     i = mml_org.find("\\\\")
@@ -108,7 +108,7 @@ def simplification():
     mml_mod = cleaning_mml(mml_mod)
     mml_mod = tokenize(mml_mod)
 
-    print(mml_mod)
+    # print(mml_mod)
 
     open("mml_mod.txt", "w").write(mml_mod)
     return mml_mod

@@ -109,9 +109,9 @@ def MjxMML(eqn):
 def latex2mml():
 
     formulas = open("data/im2latex-103K/formulas.norm.lst").readlines()
-    train = open("data/im2latex-103K/train.lst").readlines()
-    test = open("data/im2latex-103K/test.lst").readlines()
-    val = open("data/im2latex-103K/validate.lst").readlines()
+    train = open("data/im2latex-103K/train.lst").readlines()[:1000]
+    test = open("data/im2latex-103K/test.lst").readlines()[:100]
+    val = open("data/im2latex-103K/validate.lst").readlines()[:100]
 
     org_mml = open("data/opennmt/im2mml-100K/original_mml.lst", "w")
     simp_mml = open("data/opennmt/im2mml-100K/mml.lst", "w")
@@ -147,7 +147,7 @@ def latex2mml():
                 # my_timer.start()
                 stdout, stderr = output.communicate()
 
-                print("stdout, stderr: ", stdout, stderr, output)
+                # print("stdout, stderr: ", stdout, stderr, output)
 
                 org_mml.write(mml + "\n")
                 simp_mml.write(open("mml_mod.txt").readlines()[0].strip() + "\n")
