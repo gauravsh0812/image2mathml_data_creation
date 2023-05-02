@@ -133,9 +133,9 @@ def latex2mml():
             latex = formulas[int(idx)]
 
             mml = MjxMML(latex)
-            open("mml_org.txt", "w").write(mml)
 
             if mml != None:
+                open("mml_org.txt", "w").write(mml)
                 cwd = os.getcwd()
                 cmd = ["python", f"{cwd}/simplify.py"]
                 output = subprocess.Popen(
