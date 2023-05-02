@@ -11,6 +11,8 @@ def simplification():
 
     mml_org = open("mml_org.txt").readlines()[0].strip()
 
+    print("in simplify")
+
     # Removing multiple backslashes
     i = mml_org.find("\\\\")
     mml_org = mml_org.encode().decode("unicode_escape")
