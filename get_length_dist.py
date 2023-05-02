@@ -37,9 +37,8 @@ def get_distribution():
                     begin, end = k.split("-")
                     if (length > int(begin)) and (length <= int(end)):
                         d[k] += 1
-                        # break
+
                 else:
-                    # print(length)
                     d["350+"] += 1
 
         # save the distribution
