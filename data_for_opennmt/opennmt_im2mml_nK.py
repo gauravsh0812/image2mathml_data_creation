@@ -155,10 +155,11 @@ def latex2mml():
                     # print("stdout, stderr: ", stdout, stderr, output)
 
                     org_mml.write(mml + "\n")
-                    simp_mml.write(open("mml_mod.txt").readlines()[0].strip() + "\n")
+                    smml = open("mml_mod.txt").readlines()[0].strip()
+                    simp_mml.write(smml + "\n")
                     f_mml.write(f"{count} {img} basic" + "\n")
                     f_mml_src.write(f"{img}\n")
-                    f_mml_tgt.write(f"{mml}\n")
+                    f_mml_tgt.write(f"{smml}\n")
                     count += 1
 
                 except:
