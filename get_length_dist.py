@@ -30,7 +30,6 @@ def get_distribution():
         for l in v:
 
             length = len(l.split())
-            print(length)
 
             # finding which bin it belongs to
             for k in keys:
@@ -40,6 +39,7 @@ def get_distribution():
                         d[k] += 1
                         break
                 else:
+                    print(length)
                     d["350+"] += 1
 
         # save the distribution
