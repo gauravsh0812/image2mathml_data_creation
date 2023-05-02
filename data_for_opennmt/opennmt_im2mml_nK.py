@@ -136,8 +136,7 @@ def latex2mml():
             # print(mml)
             if mml != None:
                 open("mml_org.txt", "w").write(mml)
-                cwd = os.getcwd()
-                cmd = ["python", f"{cwd}/simplify.py"]
+                cmd = ["python", f"{os.getcwd()}/simplify.py"]
                 # output = subprocess.run(cmd)
                 output = subprocess.Popen(
                     cmd, stderr=subprocess.PIPE, stdout=subprocess.PIPE
@@ -148,7 +147,7 @@ def latex2mml():
                 # my_timer.start()
                 stdout, stderr = output.communicate()
 
-                # print("stdout, stderr: ", stdout, stderr, output)
+                print("stdout, stderr: ", stdout, stderr, output)
 
                 org_mml.write(mml + "\n")
                 simp_mml.write(open("mml_mod.txt").readlines()[0].strip() + "\n")
