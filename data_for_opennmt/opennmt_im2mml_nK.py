@@ -19,6 +19,10 @@ pause_event = Event()  # suspend and resume processing
 equation_counter = multiprocessing.Value("i", 0)
 time.sleep(3)
 
+# Function to kill process if TimeoutError occurs
+kill = lambda process: process.kill()
+
+
 def CleaningMML(res):
     # Removing "\ and /" at the begining and at the end
     res = res[res.find("<"):]
