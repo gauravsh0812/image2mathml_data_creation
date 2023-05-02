@@ -3,11 +3,13 @@
 import re, json, argparse
 import subprocess, os, sys
 
-def simplification(mml_org):
+def simplification():
 
     """
     simplify the mathml by removing unnecessary information.
     """
+
+    mml_org = open("mml_org.txt").readlines()[0].strip()
 
     # Removing multiple backslashes
     i = mml_org.find("\\\\")
@@ -104,7 +106,8 @@ def simplification(mml_org):
     mml_mod = cleaning_mml(mml_mod)
     mml_mod = tokenize(mml_mod)
 
-    return mml_mod
+    open("mml_mod.txt", "w").write(mml_mod)
+    # return mml_mod
 
 
 def attribute_definition(
