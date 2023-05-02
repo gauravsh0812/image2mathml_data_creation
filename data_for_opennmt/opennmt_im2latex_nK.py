@@ -1,7 +1,10 @@
 
 def im2mml_2_im2latex():
     latex_formulas_original = open("data/im2latex-103K/formulas.norm.lst").readlines()
-    latex_formulas_nK = open(f"data/im2latex-100K/latex.lst", "w")
+    latex_formulas_nK = open(f"data/opennmt/im2latex-100K/latex.lst", "w")
+
+    if not os.path.exists("data/opennmt/im2latex-100K"):
+        os.mkdir("data/opennmt/im2latex-100K")
 
     # creating the dictionary for the index:image_name for original im2latex
     idx_img = dict()

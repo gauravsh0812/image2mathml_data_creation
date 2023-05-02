@@ -113,6 +113,11 @@ def latex2mml():
     test = open("data/im2latex-103K/test.lst").readlines()
     val = open("data/im2latex-103K/validate.lst").readlines()
 
+    if not os.path.exists("data/opennmt"):
+        os.mkdir("data/opennmt")
+    if not os.path.exists("data/opennmt/im2mml-100K"):
+        os.mkdir("data/opennmt/im2mml-100K")
+
     org_mml = open("data/opennmt/im2mml-100K/original_mml.lst", "w")
     simp_mml = open("data/opennmt/im2mml-100K/mml.lst", "w")
 
