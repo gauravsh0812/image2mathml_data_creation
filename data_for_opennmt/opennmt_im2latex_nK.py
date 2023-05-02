@@ -1,3 +1,4 @@
+import os
 
 def im2mml_2_im2latex():
     latex_formulas_original = open("data/im2latex-103K/formulas.norm.lst").readlines()
