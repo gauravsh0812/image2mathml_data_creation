@@ -143,23 +143,23 @@ def latex2mml():
                 )
                 my_timer = Timer(5, kill, [output])
 
-                try:
-                    my_timer.start()
-                    stdout, stderr = output.communicate()
+                # try:
+                my_timer.start()
+                stdout, stderr = output.communicate()
 
-                    print("stdout, stderr: ", stdout, stderr)
+                print("stdout, stderr: ", stdout, stderr)
 
-                    simp_mml.write(mml + "\n")
-                    f_mml.write(f"{count} {img} basic" + "\n")
-                    f_mml_src.write(f"{img}\n")
-                    f_mml_tgt.write(f"{mml}\n")
-                    count += 1
+                simp_mml.write(mml + "\n")
+                f_mml.write(f"{count} {img} basic" + "\n")
+                f_mml_src.write(f"{img}\n")
+                f_mml_tgt.write(f"{mml}\n")
+                count += 1
 
-                except:
-                    rejected += 1
+                # except:
+                #     rejected += 1
 
-                finally:
-                    my_timer.cancel()
+                # finally:
+                my_timer.cancel()
 
 
         f_mml.close()
