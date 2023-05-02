@@ -161,7 +161,7 @@ def latex2mml():
                 #     rejected += 1
                 #
                 # finally:
-                my_timer.cancel()
+                # my_timer.cancel()
 
 
         f_mml.close()
