@@ -22,6 +22,7 @@ def get_distribution():
         for r in range(0,350, 50):
             begin = r
             end = r+50
+            print(begin, end)
             d[f"{begin}-{end}"] = 0
         d["350+"] = 0
 
