@@ -128,7 +128,7 @@ def latex2mml():
             latex = formulas[int(idx)]
 
             mml = MjxMML(latex)
-            mml.write(open("smr.txt", "w"))
+            open("mml_org.txt", "w").write(mml)
 
             if mml != None:
                 cwd = os.getcwd()
@@ -141,6 +141,9 @@ def latex2mml():
                 try:
                     my_timer.start()
                     stdout, stderr = output.communicate()
+
+                    print("stdout, stderr: ", stdout, stderr)
+
                     simp_mml.write(mml + "\n")
                     f_mml.write(f"{count} {img} basic" + "\n")
                     f_mml_src.write(f"{img}\n")
