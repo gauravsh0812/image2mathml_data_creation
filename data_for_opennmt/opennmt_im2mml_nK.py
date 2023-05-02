@@ -138,14 +138,15 @@ def latex2mml():
                 open("mml_org.txt", "w").write(mml)
                 cwd = os.getcwd()
                 cmd = ["python", f"{cwd}/simplify.py"]
-                output = subprocess.Popen(
-                    cmd, stderr=subprocess.PIPE, stdout=subprocess.PIPE
-                )
-                my_timer = Timer(5, kill, [output])
-
-                # try:
-                my_timer.start()
-                stdout, stderr = output.communicate()
+                output = subprocess.run(cmd)
+                # output = subprocess.Popen(
+                #     cmd, stderr=subprocess.PIPE, stdout=subprocess.PIPE
+                # )
+                # my_timer = Timer(5, kill, [output])
+                #
+                # # try:
+                # my_timer.start()
+                # stdout, stderr = output.communicate()
 
                 print("stdout, stderr: ", stdout, stderr, output)
 

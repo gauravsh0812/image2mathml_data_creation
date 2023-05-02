@@ -111,7 +111,7 @@ def simplification():
     print(mml_mod)
 
     open("mml_mod.txt", "w").write(mml_mod)
-    # return mml_mod
+    return mml_mod
 
 
 def attribute_definition(
