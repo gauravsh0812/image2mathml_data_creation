@@ -1,6 +1,6 @@
 import json, os
 
-def get_dist():
+def get_distribution():
     im2latex_103K = open("data/im2latex-103K/formulas.norm.lst").readlines()
     im2latex_100K = open("data/opennmt/im2latex-100K/latex.lst").readlines()
     im2mml_100K = open("data/opennmt/im2mml-100K/mml.lst").readlines()
