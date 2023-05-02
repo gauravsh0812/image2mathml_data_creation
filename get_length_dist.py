@@ -13,7 +13,7 @@ def get_distribution():
     im2latex_100K_dict = dict()
     im2mml_100K_dict = dict()
 
-    for i,v in enumerate([im2mml_100K, im2latex_100K, im2latex_103K]):
+    for i,v in enumerate([im2mml_100K]):#, im2latex_100K, im2latex_103K]):
         if i == 0: d = im2latex_103K_dict
         elif i == 1: d = im2latex_100K_dict
         else: d = im2mml_100K_dict
