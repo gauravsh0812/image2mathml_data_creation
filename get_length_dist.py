@@ -45,3 +45,5 @@ def get_distribution():
         if i==0: json.dump(d, open("data/opennmt/distributions/im2latex-103K-length-dist.json", "w"))
         elif i==1: json.dump(d, open("data/opennmt/distributions/im2latex-100K-length-dist.json", "w"))
         else: json.dump(d, open("data/opennmt/distributions/im2mml-100K-length-dist.json", "w"))
+
+get_distribution()
