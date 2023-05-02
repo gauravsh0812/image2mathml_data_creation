@@ -133,7 +133,7 @@ def latex2mml():
             latex = formulas[int(idx)]
 
             mml = MjxMML(latex)
-
+            print(mml)
             if mml != None:
                 open("mml_org.txt", "w").write(mml)
                 cwd = os.getcwd()
