@@ -30,6 +30,7 @@ def get_distribution():
         for l in v:
 
             length = len(l.split())
+            flag350 = False
 
             # finding which bin it belongs to
             for k in keys:
@@ -37,9 +38,11 @@ def get_distribution():
                     begin, end = k.split("-")
                     if (length > int(begin)) and (length <= int(end)):
                         d[k] += 1
+                        flag350 = True
 
                 else:
-                    d["350+"] += 1
+                    if not flag350:
+                        d["350+"] += 1
 
         # save the distribution
         if i==0: json.dump(d, open("data/opennmt/distributions/im2latex-103K-length-dist.json", "w"))
