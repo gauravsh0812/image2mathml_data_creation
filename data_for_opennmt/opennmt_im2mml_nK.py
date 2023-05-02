@@ -147,7 +147,7 @@ def latex2mml():
                 my_timer.start()
                 stdout, stderr = output.communicate()
 
-                print("stdout, stderr: ", stdout, stderr)
+                print("stdout, stderr: ", stdout, stderr, output)
 
                 simp_mml.write(mml + "\n")
                 f_mml.write(f"{count} {img} basic" + "\n")
