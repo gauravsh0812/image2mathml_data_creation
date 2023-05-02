@@ -468,3 +468,5 @@ def tokenize(mml_eqn):
                 tokenized_mml += " <" + token + "> "
 
     return tokenized_mml.strip()
+
+simplification()
