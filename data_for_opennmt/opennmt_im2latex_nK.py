@@ -29,7 +29,7 @@ def im2mml_2_im2latex():
         t_im2latex_tgt = open(f"data/opennmt/im2latex-100K/tgt-{t}.lst", "w")
 
         for i,v in enumerate(t_im2mml):
-            if i%10000 == 0: print(i)
+            if i%1000 == 0: print(i)
             _, img, _ = v.split()
             latex_index = int(idx_img[img])
             latex_eqn = latex_formulas_original[latex_index]
