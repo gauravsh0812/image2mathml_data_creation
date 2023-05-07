@@ -28,7 +28,7 @@ def im2mml_2_im2latex():
         t_im2latex_src = open(f"/home/skema/img2mml/gauravs_data_for_paper/data/opennmt/im2latex-100K/src-{t}.lst", "w")
         t_im2latex_tgt = open(f"/home/skema/img2mml/gauravs_data_for_paper/data/opennmt/im2latex-100K/tgt-{t}.lst", "w")
 
-            for i,v in enumerate(t_im2mml):
+        for i,v in enumerate(t_im2mml):
             if i%1000 == 0: print(i)
             _, img, _ = v.split()
             latex_index = int(idx_img[img])
