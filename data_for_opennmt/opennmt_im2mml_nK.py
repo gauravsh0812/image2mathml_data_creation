@@ -14,7 +14,7 @@ from multiprocessing import Pool, Lock, TimeoutError, Event
 print(" ")
 start_time = datetime.now()
 print("Starting at:  ", start_time)
-# 
+#
 # pause_event = Event()  # suspend and resume processing
 # equation_counter = multiprocessing.Value("i", 0)
 # time.sleep(3)
@@ -177,7 +177,7 @@ def latex2mml():
             # create temp arr
             idx, img, _ = v.split()
             _temp_arr.append([idx, img])
-            print("_temp_arr created!...")
+        print("_temp_arr created!...")
 
         with mp.Pool(150) as pool:
             results = [pool.apply_async(org_mml_main, (i,x,)) for i,x in enumerate(_temp_arr)]
