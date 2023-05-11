@@ -163,42 +163,43 @@ def latex2mml():
         #
         # f.close()
 
-        if i%100 == 0: print(i)
+        for i, v in enumerate(f):
+            if i%100 == 0: print(i)
 
-        idx, img, _ = v.split()
+            idx, img, _ = v.split()
 
-        latex = formulas[int(idx)]
+            latex = formulas[int(idx)]
 
-        mml = MjxMML(latex)
-        # print(mml)
-        if mml != None:
-            open("mml_org.txt", "w").write(mml)
-            cmd = ["python", f"{os.getcwd()}/simplify.py"]
-            # output = subprocess.run(cmd)
-            output = subprocess.Popen(
-                cmd, stderr=subprocess.PIPE, stdout=subprocess.PIPE
-            )
-            my_timer = Timer(5, kill, [output])
+            mml = MjxMML(latex)
+            # print(mml)
+            if mml != None:
+                open("mml_org.txt", "w").write(mml)
+                cmd = ["python", f"{os.getcwd()}/simplify.py"]
+                # output = subprocess.run(cmd)
+                output = subprocess.Popen(
+                    cmd, stderr=subprocess.PIPE, stdout=subprocess.PIPE
+                )
+                my_timer = Timer(5, kill, [output])
 
-            try:
-                my_timer.start()
-                stdout, stderr = output.communicate()
+                try:
+                    my_timer.start()
+                    stdout, stderr = output.communicate()
 
-                # print("stdout, stderr: ", stdout, stderr, output)
+                    # print("stdout, stderr: ", stdout, stderr, output)
 
-                org_mml.write(mml + "\n")
-                smml = open("mml_mod.txt").readlines()[0].strip()
-                simp_mml.write(smml + "\n")
-                f_mml.write(f"{count} {img} basic" + "\n")
-                f_mml_src.write(f"{img}\n")
-                f_mml_tgt.write(f"{smml}\n")
-                count += 1
+                    org_mml.write(mml + "\n")
+                    smml = open("mml_mod.txt").readlines()[0].strip()
+                    simp_mml.write(smml + "\n")
+                    f_mml.write(f"{count} {img} basic" + "\n")
+                    f_mml_src.write(f"{img}\n")
+                    f_mml_tgt.write(f"{smml}\n")
+                    count += 1
 
-            except:
-                rejected += 1
+                except:
+                    rejected += 1
 
-            finally:
-                my_timer.cancel()
+                finally:
+                    my_timer.cancel()
 
 
         f_mml.close()
