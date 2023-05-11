@@ -106,15 +106,10 @@ def MjxMML(eqn):
     else:
         return None
 
-def org_mml_main(_args):
-    # if _args[0]%100==0: print("org mml: _args[0]")
-    idx, img = _args
-    latex = formulas[int(idx)]
-    mml = MjxMML(latex)
-    return mml
+def org_mml_main(latex):
+    return MjxMML(latex)
 
 def simp_mml_main(_args):
-    # if _args[0]%100==0: print("simp mml: _args[0]")
     return simplification(_args)
 
     # print(mml)
@@ -176,7 +171,7 @@ def latex2mml():
         for i, v in enumerate(f):
             # create temp arr
             idx, img, _ = v.split()
-            _temp_arr.append([idx, img])
+            _temp_arr.append(formulas[int(idx)])
         print("_temp_arr created!...")
 
         with mp.Pool(150) as pool:
