@@ -107,13 +107,15 @@ def MjxMML(eqn):
         return None
 
 def org_mml_main(_args):
-    idx, img, _ = _args.split()
+    if _args[0]%1000==0: print("org mml: _args[0]")
+    idx, img, _ = _args[1].split()
     latex = formulas[int(idx)]
     mml = MjxMML(latex)
     return mml
 
-def simp_mml_main(mml):
-    return simplification(mml)
+def simp_mml_main(_args):
+    if _args[0]%1000==0: print("simp mml: _args[0]")
+    return simplification(_args[1])
 
     # print(mml)
 
@@ -175,13 +177,14 @@ def latex2mml():
             # create temp arr
             idx, img, _ = v.split()
             _temp_arr.append([idx, img])
+            print("_temp_arr created!...")
 
         with mp.Pool(150) as pool:
-            results = [pool.apply_async(org_mml_main, (x,) for x in _temp_arr]
+            results = [pool.apply_async(org_mml_main, (i,x,) for i,x in enumerate(_temp_arr)]
             output_org = [result.get() for result in results]
 
         with mp.Pool(150) as pool:
-            results = [pool.apply_async(simp_mml_main, (x,) for x in output_org]
+            results = [pool.apply_async(simp_mml_main, (i,x,) for i,x in enumerate(output_org)]
             output_simp = [result.get() for result in results]
 
         for t, o,s in zip(_temp_arr, output_org, output_simp):
