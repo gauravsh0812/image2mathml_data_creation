@@ -108,9 +108,9 @@ def MjxMML(eqn):
 def latex2mml():
 
     formulas = open("/home/skema/img2mml/gauravs_data_for_paper/data/im2latex-103K/formulas.norm.lst").readlines()
-    train = open("/home/skema/img2mml/gauravs_data_for_paper/data/im2latex-103K/train.lst").readlines()[:1000]
-    test = open("/home/skema/img2mml/gauravs_data_for_paper/data/im2latex-103K/test.lst").readlines()[:102]
-    val = open("/home/skema/img2mml/gauravs_data_for_paper/data/im2latex-103K/validate.lst").readlines()[:102]
+    train = open("/home/skema/img2mml/gauravs_data_for_paper/data/im2latex-103K/train.lst").readlines()
+    test = open("/home/skema/img2mml/gauravs_data_for_paper/data/im2latex-103K/test.lst").readlines()
+    val = open("/home/skema/img2mml/gauravs_data_for_paper/data/im2latex-103K/validate.lst").readlines()
 
     if not os.path.exists("/home/skema/img2mml/gauravs_data_for_paper/data/opennmt"):
         os.mkdir("/home/skema/img2mml/gauravs_data_for_paper/data/opennmt")
