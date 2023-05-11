@@ -107,14 +107,14 @@ def MjxMML(eqn):
         return None
 
 def org_mml_main(_args):
-    if _args[0]%100==0: print("org mml: _args[0]")
+    # if _args[0]%100==0: print("org mml: _args[0]")
     idx, img, _ = _args[1].split()
     latex = formulas[int(idx)]
     mml = MjxMML(latex)
     return mml
 
 def simp_mml_main(_args):
-    if _args[0]%100==0: print("simp mml: _args[0]")
+    # if _args[0]%100==0: print("simp mml: _args[0]")
     return simplification(_args[1])
 
     # print(mml)
@@ -150,10 +150,10 @@ def simp_mml_main(_args):
 
 def latex2mml():
 
-    formulas = open("/home/skema/img2mml/gauravs_data_for_paper/data/im2latex-103K/formulas.norm.lst").readlines()
-    train = open("/home/skema/img2mml/gauravs_data_for_paper/data/im2latex-103K/train.lst").readlines()
-    test = open("/home/skema/img2mml/gauravs_data_for_paper/data/im2latex-103K/test.lst").readlines()
-    val = open("/home/skema/img2mml/gauravs_data_for_paper/data/im2latex-103K/validate.lst").readlines()
+    formulas = open("/home/skema/img2mml/gauravs_data_for_paper/data/im2latex-103K/formulas.norm.lst").readlines()[:1000]
+    train = open("/home/skema/img2mml/gauravs_data_for_paper/data/im2latex-103K/train.lst").readlines()[:1000]
+    test = open("/home/skema/img2mml/gauravs_data_for_paper/data/im2latex-103K/test.lst").readlines()[:1000]
+    val = open("/home/skema/img2mml/gauravs_data_for_paper/data/im2latex-103K/validate.lst").readlines()[:1000]
 
     if not os.path.exists("/home/skema/img2mml/gauravs_data_for_paper/data/opennmt"):
         os.mkdir("/home/skema/img2mml/gauravs_data_for_paper/data/opennmt")
