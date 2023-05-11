@@ -3,7 +3,7 @@ import requests
 import subprocess, os
 import time, re
 import json
-from simplify import simplification
+# from simplify import simplification
 from datetime import datetime
 import multiprocessing as mp
 from threading import Timer
@@ -61,7 +61,6 @@ def correct_phi(string):
 def restart_mathjax_server():
     response = requests.get("http://localhost:8081/restart")
 
-
 def MjxMML(eqn):
 
     # global pause_event
@@ -106,12 +105,6 @@ def MjxMML(eqn):
     else:
         return None
 
-# def org_mml_main(latex):
-#     return MjxMML(latex)
-#
-# def simp_mml_main(_args):
-#     return simplification(_args)
-
 def latex2mml():
 
     formulas = open("/home/skema/img2mml/gauravs_data_for_paper/data/im2latex-103K/formulas.norm.lst").readlines()
@@ -135,33 +128,6 @@ def latex2mml():
         f_mml_tgt = open(f"/home/skema/img2mml/gauravs_data_for_paper/data/opennmt/im2mml-100K/tgt-{arr[fidx]}.lst", "w")
 
         print(f"working on {arr[fidx]}")
-
-        # _temp_arr = list()
-        # for i, v in enumerate(f):
-        #     # create temp arr
-        #     idx, _, _ = v.split()
-        #     _temp_arr.append(formulas[int(idx)])
-        # print("_temp_arr created!...")
-        #
-        # with mp.Pool(150) as pool:
-        #     results = [pool.apply_async(org_mml_main, (x,)) for x in _temp_arr]
-        #     output_org = [result.get() for result in results]
-        #
-        # with mp.Pool(150) as pool:
-        #     results = [pool.apply_async(simp_mml_main, (x,)) for x in output_org]
-        #     output_simp = [result.get() for result in results]
-        #
-        # print("finally creating dataset...")
-        # for t, o,s in zip(f, output_org, output_simp):
-        #     idx, img,_ = t
-        #     org_mml.write(o + "\n")
-        #     simp_mml.write(s + "\n")
-        #     f_mml.write(f"{count} {img} basic" + "\n")
-        #     f_mml_src.write(f"{img}\n")
-        #     f_mml_tgt.write(f"{s}\n")
-        #     count += 1
-        #
-        # f.close()
 
         for i, v in enumerate(f):
             if i%100 == 0: print(i)
