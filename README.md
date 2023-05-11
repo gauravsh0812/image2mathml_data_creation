@@ -6,7 +6,7 @@ All the data will be under /home/skema/img2mml/gauravs_data_for_paper/data
 
 1) create dataset: im2mml_nK from the im2latex-103K. Run `python run.py opennmt_im2mml`
 2) create dataset: im2latex_nK. Run `python run.py opennmt_im2latex`
-3) get the distribution of the im2mml_nK
+3) get the distribution of the im2mml_nK. Run `python get_length_dist.py`
 4) sample the dataset from "arxiv created" dataset. Save it as "our_arxiv_sample_dataset".
 5) Preprocess the sampled dataset:
     use OpenNMT (`https://github.com/harvardnlp/im2markup`) to preprocess the `original_latex.lst` sampled in above step.
@@ -16,5 +16,57 @@ All the data will be under /home/skema/img2mml/gauravs_data_for_paper/data
     The final sampled dataset has both omml_nK and olatex_nK for our model.
 
 next steps can be done on local system. copying data to local system.
-6) create dataset: omml_nK for opennmt
-7) create dataset: olatex_nK for opennmt
+before doing this: for opennmt create a new image folder that will not contain any blank image from our dataset.
+Make sure you have the "blank_images" log under "data_for_opennmt" folder.
+6) python `data_for_opennmt/create_images_opennmt_odata.py`
+7) create dataset: omml_nK for opennmt
+8) create dataset: olatex_nK for opennmt
+
+
+Final structure of the datasets would be :
+datasets
+    im2latex-103K
+    opennmt
+        images
+        images_processed
+        oimages
+        odata_blank_images.txt
+        im2mml-100K
+            original_mml.lst
+            mml.lst
+            train/test/validate.lst          
+            src-train/test/validate.lst
+            tgt-train/test/validate.lst
+
+        im2latex-100K
+            original_latex.lst
+            latex.lst
+            train/test/validate.lst          
+            src-train/test/validate.lst
+            tgt-train/test/validate.lst
+
+        olatex-100K
+            original_latex.lst
+            latex.lst
+            train/test/validate.lst          
+            src-train/test/validate.lst
+            tgt-train/test/validate.lst
+
+        omml-100K
+            original_latex.lst
+            latex.lst
+            train/test/validate.lst          
+            src-train/test/validate.lst
+            tgt-train/test/validate.lst
+
+    odata
+        our_sampled_data
+            images
+            image_tensors
+            original_mml/latex.lst
+            mml/latex.lst
+        im2data
+            images
+            image_tensors
+            original_mml/latex.lst
+            mml/latex.lst

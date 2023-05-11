@@ -3,15 +3,11 @@
 import re, json, argparse
 import subprocess, os, sys
 
-def simplification():
+def simplification(mml_org):
 
     """
     simplify the mathml by removing unnecessary information.
     """
-
-    mml_org = open("mml_org.txt").readlines()[0].strip()
-
-    # print("in simplify")
 
     # Removing multiple backslashes
     i = mml_org.find("\\\\")
@@ -108,9 +104,6 @@ def simplification():
     mml_mod = cleaning_mml(mml_mod)
     mml_mod = tokenize(mml_mod)
 
-    # print(mml_mod)
-
-    open("mml_mod.txt", "w").write(mml_mod)
     return mml_mod
 
 
@@ -164,9 +157,9 @@ def attribute_definition(
                         attribute_value.replace("\\", "").replace('"', "")
                         == attr_tobe_checked[attribute_parameter]
                     ):
-                        mml_code = mml_code.replace(darr, "")
+                        mml_code = mml_code.replace(" " + darr, "")
             else:
-                mml_code = mml_code.replace(darr, "")
+                mml_code = mml_code.replace(" " + darr, "")
 
     return mml_code
 
@@ -354,6 +347,7 @@ def remove_unecc_tokens(eqn):
 #
 #         return f
 
+
 def remove_single_mrow_pairs(lst):
     stack = []
     for i, elem in enumerate(lst):
@@ -361,7 +355,7 @@ def remove_single_mrow_pairs(lst):
             stack.append(i)
         elif elem == "</mrow>":
             start = stack.pop()
-            if i - start == 2:
+            if i - start <= 2:
                 lst.pop(i)
                 lst.pop(start)
                 return remove_single_mrow_pairs(lst)
@@ -406,6 +400,7 @@ def remove_additional_tokens(eqn):
 
         return f
 
+
 def remove_hexComments(eqn):
     """
     removing comments associated with the unicodes i.e. /$#x.../<!-- symbol -->
@@ -445,23 +440,39 @@ def cleaning_mml(eqn):
     return eqn
 
 
-def extract_inbetween_tokens(mml_eqn):
-    """
-    extract inbetween token like <mo>/token/<\mo>, etc.
-    """
-    mmls = [m for m in mml_eqn.split(" ") if m != ""]
-    mmlss = [
-        m for m in mmls if "<" in m and len([t for t in m if t == "<"]) == 2
-    ]
-    mmls3 = []
-    for i in mmlss:
-        if "&#x" not in i:
-            imml = [im for im in re.split(">|<", i) if im != ""]
-            if len(imml) == 3 and imml[-1] != "/math":
-                if len(imml[1]) > 1:
-                    mmls3.append(imml[1])
+# def extract_inbetween_tokens(mml_eqn):
+#     """
+#     extract inbetween token like <mo>/token/<\mo>, etc.
+#     """
+#     mmls = [m for m in mml_eqn.split(" ") if m != ""]
+#     mmlss = [
+#         m for m in mmls if "<" in m and len([t for t in m if t == "<"]) == 2
+#     ]
+#     mmls3 = []
+#     for i in mmlss:
+#         if "&#x" not in i:
+#             imml = [im for im in re.split(">|<", i) if im != ""]
+#             if len(imml) == 3 and imml[-1] != "/math":
+#                 if len(imml[1]) > 1:
+#                     mmls3.append(imml[1])
+#
+#     return mmls3
 
-    return mmls3
+
+def extract_inbetween_tokens(text):
+    clean_mml_eqn = remove_attributes(text)
+    # Use regular expression to extract all tokens from the MathML string
+    tokens = re.findall(r"<[^>]+>|[^<]+", clean_mml_eqn)
+    # Use a list to save the contents of all token pairs
+    contents = []
+    for token in tokens:
+        # If the token is a MathML tag, skip it
+        if token.startswith("<"):
+            continue
+        # Add the content of the token to the contents list
+        if len(token) > 0 and not token.isspace():
+            contents.append(token)
+    return contents
 
 
 def tokenize(mml_eqn):
@@ -513,8 +524,10 @@ def tokenize(mml_eqn):
                 tokenized_mml += token
 
             # to grab l o g, s i n, c o s, etc. as single token
-            elif len(token.replace(" ", "")) < len(token):
+            # elif len(token.replace(" ", "")) < len(token):
+            elif len(token.replace(" ", "")) < len(token) and '="' not in token:
                 tokenized_mml += token
+
             else:
                 tokenized_mml += " <" + token + "> "
 
