@@ -179,7 +179,7 @@ def latex2mml():
             output_org = [result.get() for result in results]
 
         with mp.Pool(150) as pool:
-            results = [pool.apply_async(simp_mml_main, (x,)) for i,x in output_org]
+            results = [pool.apply_async(simp_mml_main, (x,)) for x in output_org]
             output_simp = [result.get() for result in results]
 
         print("finally creating dataset...")
