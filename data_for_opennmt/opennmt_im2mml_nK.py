@@ -145,7 +145,7 @@ def simp_mml_main(_args):
 
 def latex2mml():
 
-    formulas = open("/home/skema/img2mml/gauravs_data_for_paper/data/im2latex-103K/formulas.norm.lst").readlines()[:1000]
+    formulas = open("/home/skema/img2mml/gauravs_data_for_paper/data/im2latex-103K/formulas.norm.lst").readlines()
     train = open("/home/skema/img2mml/gauravs_data_for_paper/data/im2latex-103K/train.lst").readlines()[:1000]
     test = open("/home/skema/img2mml/gauravs_data_for_paper/data/im2latex-103K/test.lst").readlines()[:1000]
     val = open("/home/skema/img2mml/gauravs_data_for_paper/data/im2latex-103K/validate.lst").readlines()[:1000]
