@@ -170,7 +170,7 @@ def latex2mml():
         _temp_arr = list()
         for i, v in enumerate(f):
             # create temp arr
-            idx, img, _ = v.split()
+            idx, _, _ = v.split()
             _temp_arr.append(formulas[int(idx)])
         print("_temp_arr created!...")
 
@@ -183,8 +183,8 @@ def latex2mml():
             output_simp = [result.get() for result in results]
 
         print("finally creating dataset...")
-        for t, o,s in zip(_temp_arr, output_org, output_simp):
-            idx, img = t
+        for t, o,s in zip(f, output_org, output_simp):
+            idx, img,_ = t
             org_mml.write(o + "\n")
             simp_mml.write(s + "\n")
             f_mml.write(f"{count} {img} basic" + "\n")
