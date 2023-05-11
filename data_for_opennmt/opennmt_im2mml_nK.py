@@ -107,14 +107,14 @@ def MjxMML(eqn):
         return None
 
 def org_mml_main(_args):
-    if _args[0]%1000==0: print("org mml: _args[0]")
+    if _args[0]%100==0: print("org mml: _args[0]")
     idx, img, _ = _args[1].split()
     latex = formulas[int(idx)]
     mml = MjxMML(latex)
     return mml
 
 def simp_mml_main(_args):
-    if _args[0]%1000==0: print("simp mml: _args[0]")
+    if _args[0]%100==0: print("simp mml: _args[0]")
     return simplification(_args[1])
 
     # print(mml)
