@@ -108,9 +108,9 @@ def MjxMML(eqn):
 def latex2mml():
 
     formulas = open("/home/skema/img2mml/gauravs_data_for_paper/data/im2latex-103K/formulas.norm.lst").readlines()
-    train = open("/home/skema/img2mml/gauravs_data_for_paper/data/im2latex-103K/train.lst").readlines()[:1000]
-    test = open("/home/skema/img2mml/gauravs_data_for_paper/data/im2latex-103K/test.lst").readlines()[:1000]
-    val = open("/home/skema/img2mml/gauravs_data_for_paper/data/im2latex-103K/validate.lst").readlines()[:1000]
+    train = open("/home/skema/img2mml/gauravs_data_for_paper/data/im2latex-103K/train.lst").readlines()
+    test = open("/home/skema/img2mml/gauravs_data_for_paper/data/im2latex-103K/test.lst").readlines()
+    val = open("/home/skema/img2mml/gauravs_data_for_paper/data/im2latex-103K/validate.lst").readlines()
 
     if not os.path.exists("/home/skema/img2mml/gauravs_data_for_paper/data/opennmt"):
         os.mkdir("/home/skema/img2mml/gauravs_data_for_paper/data/opennmt")
@@ -137,11 +137,9 @@ def latex2mml():
             latex = formulas[int(idx)]
 
             mml = MjxMML(latex)
-            # print(mml)
             if mml != None:
                 open("mml_org.txt", "w").write(mml)
                 cmd = ["python", f"{os.getcwd()}/simplify.py"]
-                # output = subprocess.run(cmd)
                 output = subprocess.Popen(
                     cmd, stderr=subprocess.PIPE, stdout=subprocess.PIPE
                 )
@@ -150,9 +148,6 @@ def latex2mml():
                 try:
                     my_timer.start()
                     stdout, stderr = output.communicate()
-
-                    # print("stdout, stderr: ", stdout, stderr, output)
-
                     org_mml.write(mml + "\n")
                     smml = open("mml_mod.txt").readlines()[0].strip()
                     simp_mml.write(smml + "\n")
