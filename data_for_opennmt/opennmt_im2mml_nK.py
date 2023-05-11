@@ -180,11 +180,11 @@ def latex2mml():
             print("_temp_arr created!...")
 
         with mp.Pool(150) as pool:
-            results = [pool.apply_async(org_mml_main, (i,x,) for i,x in enumerate(_temp_arr)]
+            results = [pool.apply_async(org_mml_main, (i,x,)) for i,x in enumerate(_temp_arr)]
             output_org = [result.get() for result in results]
 
         with mp.Pool(150) as pool:
-            results = [pool.apply_async(simp_mml_main, (i,x,) for i,x in enumerate(output_org)]
+            results = [pool.apply_async(simp_mml_main, (i,x,)) for i,x in enumerate(output_org)]
             output_simp = [result.get() for result in results]
 
         for t, o,s in zip(_temp_arr, output_org, output_simp):
