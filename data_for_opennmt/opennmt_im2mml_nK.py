@@ -108,7 +108,7 @@ def MjxMML(eqn):
 
 def org_mml_main(_args):
     # if _args[0]%100==0: print("org mml: _args[0]")
-    idx, img, _ = _args
+    idx, img = _args
     latex = formulas[int(idx)]
     mml = MjxMML(latex)
     return mml
