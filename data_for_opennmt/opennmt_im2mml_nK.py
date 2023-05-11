@@ -108,14 +108,14 @@ def MjxMML(eqn):
 
 def org_mml_main(_args):
     # if _args[0]%100==0: print("org mml: _args[0]")
-    idx, img, _ = _args[1].split()
+    idx, img, _ = _args.split()
     latex = formulas[int(idx)]
     mml = MjxMML(latex)
     return mml
 
 def simp_mml_main(_args):
     # if _args[0]%100==0: print("simp mml: _args[0]")
-    return simplification(_args[1])
+    return simplification(_args)
 
     # print(mml)
 
@@ -180,11 +180,11 @@ def latex2mml():
         print("_temp_arr created!...")
 
         with mp.Pool(150) as pool:
-            results = [pool.apply_async(org_mml_main, (i,x,)) for i,x in enumerate(_temp_arr)]
+            results = [pool.apply_async(org_mml_main, (x,)) for x in _temp_arr]
             output_org = [result.get() for result in results]
 
         with mp.Pool(150) as pool:
-            results = [pool.apply_async(simp_mml_main, (i,x,)) for i,x in enumerate(output_org)]
+            results = [pool.apply_async(simp_mml_main, (x,)) for i,x in output_org]
             output_simp = [result.get() for result in results]
 
         print("finally creating dataset...")
