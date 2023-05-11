@@ -3,9 +3,9 @@ import requests
 import subprocess, os
 import time, re
 import json
-# from simplify import simplification
+from simplify import simplification
 from datetime import datetime
-import multiprocessing
+import multiprocessing as mp
 from threading import Timer
 from multiprocessing import Pool, Lock, TimeoutError, Event
 
@@ -106,6 +106,46 @@ def MjxMML(eqn):
     else:
         return None
 
+def org_mml_main(_args):
+    idx, img, _ = _args.split()
+    latex = formulas[int(idx)]
+    mml = MjxMML(latex)
+    return mml
+
+def simp_mml_main(mml):
+    return simplification(mml)
+
+    # print(mml)
+
+    # if mml != None:
+    #     open("mml_org.txt", "w").write(mml)
+    #     cmd = ["python", f"{os.getcwd()}/simplify.py"]
+    #     # output = subprocess.run(cmd)
+    #     output = subprocess.Popen(
+    #         cmd, stderr=subprocess.PIPE, stdout=subprocess.PIPE
+    #     )
+    #     my_timer = Timer(5, kill, [output])
+    #
+    #     try:
+    #         my_timer.start()
+    #         stdout, stderr = output.communicate()
+    #
+    #         # print("stdout, stderr: ", stdout, stderr, output)
+    #
+    #         org_mml.write(mml + "\n")
+    #         smml = open("mml_mod.txt").readlines()[0].strip()
+    #         simp_mml.write(smml + "\n")
+    #         f_mml.write(f"{count} {img} basic" + "\n")
+    #         f_mml_src.write(f"{img}\n")
+    #         f_mml_tgt.write(f"{smml}\n")
+    #         count += 1
+    #
+    #     except:
+    #         rejected += 1
+    #
+    #     finally:
+    #         my_timer.cancel()
+
 def latex2mml():
 
     formulas = open("/home/skema/img2mml/gauravs_data_for_paper/data/im2latex-103K/formulas.norm.lst").readlines()
@@ -130,46 +170,74 @@ def latex2mml():
 
         print(f"working on {arr[fidx]}")
 
+        _temp_arr = list()
         for i, v in enumerate(f):
-            if i%10000 == 0: print(i)
-
+            # create temp arr
             idx, img, _ = v.split()
+            _temp_arr.append([idx, img])
 
-            latex = formulas[int(idx)]
+        with mp.Pool(150) as pool:
+            results = [pool.apply_async(org_mml_main, (x,) for x in _temp_arr]
+            output_org = [result.get() for result in results]
 
-            mml = MjxMML(latex)
-            # print(mml)
-            if mml != None:
-                open("mml_org.txt", "w").write(mml)
-                cmd = ["python", f"{os.getcwd()}/simplify.py"]
-                # output = subprocess.run(cmd)
-                output = subprocess.Popen(
-                    cmd, stderr=subprocess.PIPE, stdout=subprocess.PIPE
-                )
-                my_timer = Timer(5, kill, [output])
+        with mp.Pool(150) as pool:
+            results = [pool.apply_async(simp_mml_main, (x,) for x in output_org]
+            output_simp = [result.get() for result in results]
 
-                try:
-                    my_timer.start()
-                    stdout, stderr = output.communicate()
+        for t, o,s in zip(_temp_arr, output_org, output_simp):
+            idx, img = t
+            org_mml.write(o + "\n")
+            simp_mml.write(s + "\n")
+            f_mml.write(f"{count} {img} basic" + "\n")
+            f_mml_src.write(f"{img}\n")
+            f_mml_tgt.write(f"{s}\n")
+            count += 1
 
-                    # print("stdout, stderr: ", stdout, stderr, output)
-
-                    org_mml.write(mml + "\n")
-                    smml = open("mml_mod.txt").readlines()[0].strip()
-                    simp_mml.write(smml + "\n")
-                    f_mml.write(f"{count} {img} basic" + "\n")
-                    f_mml_src.write(f"{img}\n")
-                    f_mml_tgt.write(f"{smml}\n")
-                    count += 1
-
-                except:
-                    rejected += 1
-
-                finally:
-                    my_timer.cancel()
+        f.close()
 
 
-        f_mml.close()
+
+            # if i%10000 == 0: print(i)
+
+
+
+            # idx, img, _ = v.split()
+            #
+            # latex = formulas[int(idx)]
+            #
+            # mml = MjxMML(latex)
+            # # print(mml)
+            # if mml != None:
+            #     open("mml_org.txt", "w").write(mml)
+            #     cmd = ["python", f"{os.getcwd()}/simplify.py"]
+            #     # output = subprocess.run(cmd)
+            #     output = subprocess.Popen(
+            #         cmd, stderr=subprocess.PIPE, stdout=subprocess.PIPE
+            #     )
+            #     my_timer = Timer(5, kill, [output])
+            #
+            #     try:
+            #         my_timer.start()
+            #         stdout, stderr = output.communicate()
+            #
+            #         # print("stdout, stderr: ", stdout, stderr, output)
+            #
+            #         org_mml.write(mml + "\n")
+            #         smml = open("mml_mod.txt").readlines()[0].strip()
+            #         simp_mml.write(smml + "\n")
+            #         f_mml.write(f"{count} {img} basic" + "\n")
+            #         f_mml_src.write(f"{img}\n")
+            #         f_mml_tgt.write(f"{smml}\n")
+            #         count += 1
+            #
+            #     except:
+            #         rejected += 1
+            #
+            #     finally:
+            #         my_timer.cancel()
+
+
+        # f_mml.close()
 
     org_mml.close()
     simp_mml.close()
