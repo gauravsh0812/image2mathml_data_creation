@@ -14,10 +14,10 @@ from multiprocessing import Pool, Lock, TimeoutError, Event
 print(" ")
 start_time = datetime.now()
 print("Starting at:  ", start_time)
-#
-# pause_event = Event()  # suspend and resume processing
-# equation_counter = multiprocessing.Value("i", 0)
-# time.sleep(3)
+
+pause_event = Event()  # suspend and resume processing
+equation_counter = mp.Value("i", 0)
+time.sleep(3)
 
 # Function to kill process if TimeoutError occurs
 kill = lambda process: process.kill()
