@@ -130,7 +130,7 @@ def latex2mml():
         print(f"working on {arr[fidx]}")
 
         for i, v in enumerate(f):
-            if i%100 == 0: print(i)
+            if i%1000 == 0: print(i)
 
             idx, img, _ = v.split()
 
