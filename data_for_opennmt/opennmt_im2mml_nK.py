@@ -187,6 +187,7 @@ def latex2mml():
             results = [pool.apply_async(simp_mml_main, (i,x,)) for i,x in enumerate(output_org)]
             output_simp = [result.get() for result in results]
 
+        print("finally creating dataset...")
         for t, o,s in zip(_temp_arr, output_org, output_simp):
             idx, img = t
             org_mml.write(o + "\n")
