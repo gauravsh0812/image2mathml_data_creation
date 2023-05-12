@@ -19,9 +19,11 @@ def simplification():
         i = mml_org.find("\\\\")
 
     # Removing initial information about URL, display, and equation itself
+    # keeping the display="block"
     begin = mml_org.find("<math") + len("<math")
     end = mml_org.find(">")
-    mml_org = mml_org.replace(mml_org[begin:end], "")
+    # mml_org = mml_org.replace(mml_org[begin:end], "")
+    mml_org = mml_org.replace(mml_org[begin:end], ' display="block"')
 
     # ATTRIBUTES
 
@@ -84,7 +86,7 @@ def simplification():
         "lquote": "&quot;",
         "rquote": "&quot;",
         "overflow": "linebreak",
-        "display": "block",
+        # "display": "block",
         "denomalign": "center",
         "numalign": "center",
         "align": "axis",
@@ -101,8 +103,8 @@ def simplification():
     mml_mod = attribute_definition(
         mml_org, elements, attr_tobe_removed, attr_tobe_checked
     )
-
     mml_mod = cleaning_mml(mml_mod)
+
     mml_mod = tokenize(mml_mod)
 
     # print(mml_mod)
