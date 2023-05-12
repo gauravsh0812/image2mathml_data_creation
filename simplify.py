@@ -8,7 +8,7 @@ def simplification():
     """
     simplify the mathml by removing unnecessary information.
     """
-    mml_org = open("mml_org.txt").readlines()[0]
+    # mml_org = open("mml_org.txt").readlines()[0]
 
     # Removing multiple backslashes
     i = mml_org.find("\\\\")
@@ -105,7 +105,8 @@ def simplification():
     mml_mod = cleaning_mml(mml_mod)
     mml_mod = tokenize(mml_mod)
 
-    open("mml_mod.txt", "w").write(mml_mod)
+    print(mml_mod)
+    # open("mml_mod.txt", "w").write(mml_mod)
     # return mml_mod
 
 
@@ -424,6 +425,7 @@ def tokenize(mml_eqn):
         token = token.strip()
 
         if len(token) > 0:
+
             if "&#x" in token or len(token) == 1:
                 tokenized_mml += token
 
@@ -455,12 +457,15 @@ def tokenize(mml_eqn):
                         tokenized_mml += f" {intgr} "
 
             elif token in inbetween_tokens:
-                tokenized_mml += token
+                if len(token.replace(" ", "")) < len(token):
+                    tokenized_mml += token.replace(" ", "")
+                else: tokenized_mml += token
+
 
             # to grab l o g, s i n, c o s, etc. as single token
             # elif len(token.replace(" ", "")) < len(token):
-            elif len(token.replace(" ", "")) < len(token):# and '="' not in token:
-                tokenized_mml += token
+            # elif len(token.replace(" ", "")) < len(token):# and '="' not in token:
+            #     tokenized_mml += token
 
             else:
                 tokenized_mml += " <" + token + "> "
@@ -468,4 +473,5 @@ def tokenize(mml_eqn):
     return tokenized_mml.strip()
 
 if __name__ == "__main__":
+    # mml = '<math xmlns="http://www.w3.org/1998/Math/MathML" display="block" alttext="E = E _ { 0 } + \\frac { 1 } { 2 \\operatorname { s i n h } ( \\gamma ( 0 ) / 2 ) } \\operatorname { s i n h } \\left( \\gamma ( 0 ) \\left( \\frac { 1 } { 2 } + c ( 0 ) \\right) \\right) h c \\nu _ { \\mathrm { v i b } }\\n"> <mi>E</mi> <mo>=</mo> <msub> <mi>E</mi> <mrow class="MJX-TeXAtom-ORD"> <mn>0</mn> </mrow> </msub> <mo>+</mo> <mfrac> <mn>1</mn> <mrow> <mn>2</mn> <mi>s i n h</mi> <mo>&#x2061;<!-- \u2061 --></mo> <mo stretchy="false">(</mo> <mi>&#x03B3;<!-- γ --></mi> <mo stretchy="false">(</mo> <mn>0</mn> <mo stretchy="false">)</mo> <mrow class="MJX-TeXAtom-ORD"> <mo>/</mo> </mrow> <mn>2</mn> <mo stretchy="false">)</mo> </mrow> </mfrac> <mi>s i n h</mi> <mo>&#x2061;<!-- \u2061 --></mo> <mrow> <mo>(</mo> <mi>&#x03B3;<!-- γ --></mi> <mo stretchy="false">(</mo> <mn>0</mn> <mo stretchy="false">)</mo> <mrow> <mo>(</mo> <mfrac> <mn>1</mn> <mn>2</mn> </mfrac> <mo>+</mo> <mi>c</mi> <mo stretchy="false">(</mo> <mn>0</mn> <mo stretchy="false">)</mo> <mo>)</mo> </mrow> <mo>)</mo> </mrow> <mi>h</mi> <mi>c</mi> <msub> <mi>&#x03BD;<!-- ν --></mi> <mrow class="MJX-TeXAtom-ORD"> <mrow class="MJX-TeXAtom-ORD"> <mi mathvariant="normal">v</mi> <mi mathvariant="normal">i</mi> <mi mathvariant="normal">b</mi> </mrow> </mrow> </msub></math>'
     simplification()
