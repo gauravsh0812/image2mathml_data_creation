@@ -105,8 +105,8 @@ def simplification():
     mml_mod = cleaning_mml(mml_mod)
     mml_mod = tokenize(mml_mod)
 
-    print(mml_mod)
-    # open("mml_mod.txt", "w").write(mml_mod)
+    # print(mml_mod)
+    open("mml_mod.txt", "w").write(mml_mod)
     # return mml_mod
 
 
