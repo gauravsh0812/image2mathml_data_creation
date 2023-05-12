@@ -459,7 +459,7 @@ def tokenize(mml_eqn):
 
             # to grab l o g, s i n, c o s, etc. as single token
             # elif len(token.replace(" ", "")) < len(token):
-            elif len(token.replace(" ", "")) < len(token) and '="' not in token:
+        elif len(token.replace(" ", "")) < len(token):# and '="' not in token:
                 tokenized_mml += token
 
             else:
