@@ -8,7 +8,7 @@ def simplification():
     """
     simplify the mathml by removing unnecessary information.
     """
-    # mml_org = open("mml_org.txt").readlines()[0]
+    mml_org = open("mml_org.txt").readlines()[0]
 
     # Removing multiple backslashes
     i = mml_org.find("\\\\")
