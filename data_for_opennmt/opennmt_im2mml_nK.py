@@ -107,7 +107,7 @@ def MjxMML(eqn):
 
 def latex2mml():
 
-    formulas = open("/home/skema/img2mml/gauravs_data_for_paper/data/im2latex-103K/formulas.lst").readlines().decode("utf-8")
+    formulas = open("/home/skema/img2mml/gauravs_data_for_paper/data/im2latex-103K/formulas.lst").readlines()
     train = open("/home/skema/img2mml/gauravs_data_for_paper/data/im2latex-103K/train.lst").readlines()
     test = open("/home/skema/img2mml/gauravs_data_for_paper/data/im2latex-103K/test.lst").readlines()
     val = open("/home/skema/img2mml/gauravs_data_for_paper/data/im2latex-103K/validate.lst").readlines()

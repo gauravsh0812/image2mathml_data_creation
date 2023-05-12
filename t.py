@@ -1,21 +1,13 @@
-from multiprocessing import Pool
+import chardet
 
-def worker_func(x):
-    # Perform some computation
-    result = x * x
-    return result
+file_path = '/home/skema/img2mml/gauravs_data_for_paper/data/im2latex-103K/formulas.lst'
 
-if __name__ == '__main__':
-    # Create a pool of processes
-    with Pool() as pool:
-        # Define the input data
-        data = [1, 2, 3, 4, 5]
+# Read the contents of the file as binary data
+with open(file_path, 'rb') as file:
+    byte_data = file.read()
 
-        # Apply the worker function to the data using the pool
-        results = [pool.apply_async(worker_func, (x,)) for x in data]
+# Detect the encoding of the byte data
+result = chardet.detect(byte_data)
+encoding = result['encoding']
 
-        # Retrieve the return values from the async results
-        output = [result.get() for result in results]
-
-    # Print the results
-    print(output)
+print(f"The file encoding is: {encoding}")
