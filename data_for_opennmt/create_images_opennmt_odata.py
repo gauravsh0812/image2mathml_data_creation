@@ -1,9 +1,9 @@
 import os
 import shutil.copyfile as CP
 
-images = "/Users/gaurav/Desktop/research/DONT_DELETE_training_data/new/our_sampled_data/images"
-new_images = "/Users/gaurav/Desktop/research/DONT_DELETE_training_data/new/opennmt/oimages"
-blank = open("/Users/gaurav/Desktop/research/DONT_DELETE_training_data/new/opennmt/odata_blank_images.txt").readlines()
+images = "/home/skema/img2mml/gauravs_data_for_paper/data/odata/our_sampled_data/images"
+new_images = "/home/skema/img2mml/gauravs_data_for_paper/data/opennmt/oimages"
+blank = open("/home/skema/img2mml/gauravs_data_for_paper/data/opennmt/our_blank_images.txt").readlines()
 
 count = 0
 for i in range(len(os.listdir(images))):

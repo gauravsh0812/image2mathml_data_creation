@@ -15,9 +15,11 @@ All the data will be under /home/skema/img2mml/gauravs_data_for_paper/data
     (NOTE: We don't need to preprocess images for OpenNMT. It is for Our model.)
     The final sampled dataset has both omml_nK and olatex_nK for our model.
 
-next steps can be done on local system. copying data to local system.
-before doing this: for opennmt create a new image folder that will not contain any blank image from our dataset.
-Make sure you have the "blank_images" log under "data_for_opennmt" folder.
+before proceeding, let's copy all the relevant image folders to respective
+directories to create final structure as mention below.
+
+for opennmt create a new image folder that will not contain any blank image from our dataset.
+Make sure you have the "blank_images log" under "image2mathml_data_creation" folder.
 6) python `data_for_opennmt/create_images_opennmt_odata.py`
 7) create dataset: omml_nK for opennmt
 8) create dataset: olatex_nK for opennmt
@@ -27,10 +29,10 @@ Final structure of the datasets would be :
 datasets
     im2latex-103K
     opennmt
-        images
-        images_processed
-        oimages
+        images_processed (cp from im2latex-103K)
+        oimages (create using create_images_opennmt_odata)
         odata_blank_images.txt
+        im2data_distributions
         im2mml-100K
             original_mml.lst
             mml.lst
