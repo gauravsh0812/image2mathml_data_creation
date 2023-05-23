@@ -25,7 +25,7 @@ Make sure you have the "blank_images log" under "image2mathml_data_creation" fol
 use `python scripts/preprocessing/preprocess_formulas.py --mode normalize --input-file /home/skema/img2mml/gauravs_data_for_paper/data/odata/our_sampled_data/no_blank_original_latex.lst --output-file /home/skema/img2mml/gauravs_data_for_paper/data/odata/our_sampled_data/latex.ls`
 
 7) run `python run.py reformatting` to create dataset: omml_nK/olatex_nK for opennmt and im2data for odata.
-
+7a) copy opennmt/images_processed to odata/im2data manually
 
 Final structure of the datasets would be :
 datasets
