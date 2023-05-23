@@ -1,5 +1,5 @@
 import os
-import shutil.copyfile as CP
+import shutils.copyfile as CP
 
 def no_blank_data():
     images = "/home/skema/img2mml/gauravs_data_for_paper/data/odata/our_sampled_data/images"
@@ -9,6 +9,7 @@ def no_blank_data():
     count = 0
     for i in range(len(os.listdir(images))):
         if i+".png" not in blank:
+            if i % 1000 ==0: print(i)
             src = os.path.join(images, i+".png")
             dst = os.path.join(new_images, count+".png")
             CP(src, dst)
