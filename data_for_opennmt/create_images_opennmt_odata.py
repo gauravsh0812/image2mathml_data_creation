@@ -1,5 +1,5 @@
 import os
-import shutils.copyfile as CP
+import shutil
 
 def no_blank_data():
     images = "/home/skema/img2mml/gauravs_data_for_paper/data/odata/our_sampled_data/images"
@@ -12,7 +12,7 @@ def no_blank_data():
             if i % 1000 ==0: print(i)
             src = os.path.join(images, i+".png")
             dst = os.path.join(new_images, count+".png")
-            CP(src, dst)
+            shutil.copyfile(src, dst)
 
     # -------------------------------------------------------------------------------
     # redefining original-latex file by eliminating latex correspoding to blank file.
