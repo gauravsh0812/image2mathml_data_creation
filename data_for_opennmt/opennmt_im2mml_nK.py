@@ -9,12 +9,6 @@ import multiprocessing as mp
 from threading import Timer
 from multiprocessing import Pool, Lock, TimeoutError, Event
 
-
-# Printing starting time
-print(" ")
-start_time = datetime.now()
-print("Starting at:  ", start_time)
-
 pause_event = Event()  # suspend and resume processing
 equation_counter = mp.Value("i", 0)
 time.sleep(3)
