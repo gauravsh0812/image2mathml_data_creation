@@ -21,8 +21,9 @@ directories to create final structure as mention below.
 for opennmt create a new image folder that will not contain any blank image from our dataset.
 Make sure you have the "blank_images log" under "image2mathml_data_creation" folder.
 6) move the "sampled_data" to "odata" as our_sampled_data. Then `python run.py remove_blank_data`
-7) create dataset: omml_nK for opennmt
-8) create dataset: olatex_nK for opennmt
+6a) preprocess the "no_blank_original_latex.lst" using opennmt-lua and rename it to latex.lst.
+
+7) run `python run.py reformatting` to create dataset: omml_nK/olatex_nK for opennmt and im2data for odata.
 
 
 Final structure of the datasets would be :
@@ -66,10 +67,12 @@ datasets
             images
             image_tensors
             original_mml/latex.lst (use opennmt preprocessing code to preprocess LaTeX)
+            no_blank_original_latex.lst
             mml/latex.lst
             paths.lst
+
         im2data
-            images
-            image_tensors
+            images_processed
+            image_tensors (will be created when preprocess the data)
             original_mml/latex.lst
             mml/latex.lst

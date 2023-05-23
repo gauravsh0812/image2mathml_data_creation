@@ -146,7 +146,7 @@ def latex2mml():
                     smml = open("mml_mod.txt").readlines()[0].strip()
                     simp_mml.write(smml + "\n")
                     f_mml.write(f"{count} {img} basic" + "\n")
-                    f_mml_src.write(f"{img}\n")
+                    f_mml_src.write(f"{img}.png\n")
                     f_mml_tgt.write(f"{smml}\n")
                     count += 1
 
