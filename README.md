@@ -20,7 +20,7 @@ directories to create final structure as mention below.
 
 for opennmt create a new image folder that will not contain any blank image from our dataset.
 Make sure you have the "blank_images log" under "image2mathml_data_creation" folder.
-6) `python run.py remove_blank_data`
+6) move the "sampled_data" to "odata" as our_sampled_data. Then `python run.py remove_blank_data`
 7) create dataset: omml_nK for opennmt
 8) create dataset: olatex_nK for opennmt
 
