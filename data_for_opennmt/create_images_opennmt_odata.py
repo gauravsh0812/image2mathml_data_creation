@@ -22,5 +22,5 @@ def no_blank_data():
     new_latex = open("/home/skema/img2mml/gauravs_data_for_paper/data/odata/our_sampled_data/no_blank_original_latex.lst", "w")
 
     for i in range(len(org_latex)):
-        if i+".png" not in blank:
+        if str(i)+".png" not in blank:
             new_latex.write(org_latex[i])
