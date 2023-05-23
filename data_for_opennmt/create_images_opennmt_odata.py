@@ -15,7 +15,7 @@ def no_blank_data():
             dst = os.path.join(new_images, str(count)+".png")
             shutil.copyfile(src, dst)
         else:
-        print('removing...')
+            print('removing...')
 
     # -------------------------------------------------------------------------------
     # redefining original-latex file by eliminating latex correspoding to blank file.
