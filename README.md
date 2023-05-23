@@ -6,7 +6,7 @@ All the data will be under /home/skema/img2mml/gauravs_data_for_paper/data
 
 1) create dataset: im2mml_nK from the im2latex-103K. Run `python run.py opennmt_im2mml`
 2) create dataset: im2latex_nK. Run `python run.py opennmt_im2latex`
-3) get the distribution of the im2mml_nK. Run `python get_length_dist.py`
+3) get the distribution of the im2mml_nK. Run `python get_length_dist.py opennmt`
 4) sample the dataset from "arxiv created" dataset. Save it as "our_sample_dataset".
 5) Preprocess the sampled dataset:
     preprocess the `original_mml.lst` using `preprocessing/preprocess_mml.py` script.
@@ -26,7 +26,7 @@ use `cd opennmt/OpenNMT-Lua/python scripts/preprocessing/preprocess_formulas.py 
 
 7) run `python run.py reformatting` to create dataset: omml_nK/olatex_nK for opennmt and im2data for odata.
 7a) copy opennmt/images_processed to odata/im2data manually (if needed, else the opennmt path can be used as src).
-8) get distribution of olatex-100K, and omml-100K.
+8) get distribution of olatex-100K, and omml-100K. Run `python get_length_dist odata`
 
 Final structure of the datasets should look like:
 datasets
