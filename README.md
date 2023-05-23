@@ -30,7 +30,7 @@ datasets
     im2latex-103K
     opennmt
         images_processed (cp from im2latex-103K)
-        oimages (create using create_images_opennmt_odata)
+        oimages (create using create_images_opennmt_odata, removing blank images)
         odata_blank_images.txt
         im2data_distributions
         im2mml-100K
@@ -55,8 +55,8 @@ datasets
             tgt-train/test/validate.lst
 
         omml-100K
-            original_latex.lst
-            latex.lst
+            original_mml.lst
+            mml.lst          
             train/test/validate.lst          
             src-train/test/validate.lst
             tgt-train/test/validate.lst
@@ -65,8 +65,9 @@ datasets
         our_sampled_data
             images
             image_tensors
-            original_mml/latex.lst
+            original_mml/latex.lst (use opennmt preprocessing code to preprocess LaTeX)
             mml/latex.lst
+            paths.lst
         im2data
             images
             image_tensors
