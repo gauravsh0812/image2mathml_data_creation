@@ -13,5 +13,5 @@ if __name__=="__main__":
     # if cond == "opennmt_im2latex":
     #     im2mml_2_im2latex()
 
-    if cond == "remove_blank_data":
-        no_blank_data()
+    # if cond == "remove_blank_data":
+    no_blank_data()
