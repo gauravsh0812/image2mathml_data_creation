@@ -22,6 +22,7 @@ for opennmt create a new image folder that will not contain any blank image from
 Make sure you have the "blank_images log" under "image2mathml_data_creation" folder.
 6) move the "sampled_data" to "odata" as our_sampled_data. Then `python run.py remove_blank_data`
 6a) preprocess the "no_blank_original_latex.lst" using opennmt-lua and rename it to latex.lst.
+use `python scripts/preprocessing/preprocess_formulas.py --mode normalize --input-file /home/skema/img2mml/gauravs_data_for_paper/data/odata/our_sampled_data/no_blank_original_latex.lst --output-file /home/skema/img2mml/gauravs_data_for_paper/data/odata/our_sampled_data/latex.ls`
 
 7) run `python run.py reformatting` to create dataset: omml_nK/olatex_nK for opennmt and im2data for odata.
 

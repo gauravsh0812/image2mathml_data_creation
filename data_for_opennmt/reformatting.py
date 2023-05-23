@@ -86,6 +86,6 @@ def reformat():
     shutil.copyfile(src+"/im2mml-100K/original_mml.lst", dst+"/original_mml.lst")
     shutil.copyfile(src+"/im2latex-100K/original_latex.lst", dst+"/original_latex.lst")
     shutil.copyfile(src+"/im2mml-100K/mml.lst", dst+"/mml.lst")
-    shutil.copyfile(src+"/im2latex-100K/atex.lst", dst+"/latex.lst")
+    shutil.copyfile(src+"/im2latex-100K/latex.lst", dst+"/latex.lst")
 
     shutil.copyfile(src+"/images_processed", dst+"/images_processed")
