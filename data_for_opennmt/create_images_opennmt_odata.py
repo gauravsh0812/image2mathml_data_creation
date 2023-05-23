@@ -14,6 +14,7 @@ def no_blank_data():
             src = os.path.join(images, str(i)+".png")
             dst = os.path.join(new_images, str(count)+".png")
             shutil.copyfile(src, dst)
+            count+=1
         else:
             print('removing...')
 
