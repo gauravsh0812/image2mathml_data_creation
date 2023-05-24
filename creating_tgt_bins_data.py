@@ -59,7 +59,7 @@ def create_content_bleu_distribution_dataset(latex_folder, mml_folder):
 
         con_tgt = open(f"{mbase}/content_based_distribution/tgt-test-{category}.lst", "w")
         con_src = open(f"{mbase}/content_based_distribution/src-test-{category}.lst", "w")
-        cat_src = open(f"{lbase}/content_based_distribution/src-test-{category}.lst").readlines()
+        cat_src = open(f"{lbase}/length_based_distribution/src-test-{category}.lst").readlines()
 
         for cs in cat_src:
             cat_idx = src.index(cs)
