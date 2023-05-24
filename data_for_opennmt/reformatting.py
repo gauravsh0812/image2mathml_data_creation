@@ -93,10 +93,10 @@ def reformat():
         os.mkdir(dst+"/images")
 
     count = 0
-    for tt in ["train, test, validate"]:
-        for s,t in zip(open(src+f"/im2mml-100K/src-{tt}.lst").readlines(),
-                        open(src+f"/im2mml-100K/tgt-{tt}.lst").readlines()):
-
+    for tt in ["train", "test", "validate"]:
+        SRC = open(src+f"/im2mml-100K/src-{tt}.lst").readlines()
+        TGT = open(src+f"/im2mml-100K/tgt-{tt}.lst").readlines()
+        for s,t in zip(SRC,TGT):
             dst_mml.write(t)
             shutil.copyfile(src+"/images_processed/"+s, dst+"/images/"+count+".png")
             count+=1
