@@ -72,3 +72,6 @@ def create_content_bleu_distribution_dataset(latex_folder, mml_folder):
 if __name__=="__main__":
     for f in ["im2latex-100K", "im2mml-100K", "olatex-100K", "omml-100K"]:
         create_length_bleu_distribution_dataset(f)
+
+    create_content_bleu_distribution_dataset("olatex-100K", "omml-100K")
+    create_content_bleu_distribution_dataset("im2latex-100K", "im2mml-100K")
