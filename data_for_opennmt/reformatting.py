@@ -87,9 +87,18 @@ def reformat():
     # ------------------------------------
     src = "/home/skema/img2mml/gauravs_data_for_paper/data/opennmt/"
     dst = "/home/skema/img2mml/gauravs_data_for_paper/data/odata/im2data"
-    shutil.copyfile(src+"/im2mml-100K/original_mml.lst", dst+"/original_mml.lst")
-    shutil.copyfile(src+"/im2latex-100K/original_latex.lst", dst+"/original_latex.lst")
-    shutil.copyfile(src+"/im2mml-100K/mml.lst", dst+"/mml.lst")
-    shutil.copyfile(src+"/im2latex-100K/latex.lst", dst+"/latex.lst")
+    dst_mml, dst_latex = open(dst+"/mml.lst", "w"), open(dst+"/latex.lst", "w")
+
+    if not os.path.exists(dst+"/images"):
+        os.mkdir(dst+"/images")
+
+    count = 0
+    for tt in ["train, test, validate"]:
+        for s,t in zip(open(src+f"/im2mml-100K/src-{tt}.lst").readlines(),
+                        open(src+f"/im2mml-100K/tgt-{tt}.lst").readlines()):
+
+            dst_mml.write(t)
+            shutil.copyfile(src+"/images_processed/"+s, dst+"/images/"+count+".png")
+            count+=1
 
     print("reformatting for odata im2data done!...")
