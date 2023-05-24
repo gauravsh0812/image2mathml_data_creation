@@ -26,7 +26,11 @@ use `cd opennmt/OpenNMT-Lua/python scripts/preprocessing/preprocess_formulas.py 
 
 7) run `python run.py reformatting` to create dataset: omml_nK/olatex_nK for opennmt and im2data for odata.
 7a) copy opennmt/images_processed to odata/im2data manually (if needed, else the opennmt path can be used as src).
-8) get distribution of olatex-100K, and omml-100K. Run `python get_length_dist odata`
+8) get distribution of olatex-100K, and omml-100K. Run `python get_length_dist.py odata`
+9) Divide tgt-test.lst of all opennmt and odata into two categories:
+    a) length_wise_separation - separate latex and mml tgt files into len wise bins.
+    b) content_wise_separation - separate latex into len wise bins and place correspoding mmls.
+    Run `python creating_tgt_bins_data.py`
 
 Final structure of the datasets should look like:
 datasets
