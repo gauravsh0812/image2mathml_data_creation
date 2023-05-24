@@ -102,7 +102,7 @@ def reformat():
             assert ms==ls
             dst_mml.write(mt)
             dst_latex.write(lt)
-            shutil.copyfile(src+"/images_processed/"+s.replace("\n", ""), dst+"/images/"+str(count)+".png")
+            shutil.copyfile(src+"/images_processed/"+ms.replace("\n", ""), dst+"/images/"+str(count)+".png")
             count+=1
 
     print("reformatting for odata im2data done!...")
