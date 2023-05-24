@@ -57,9 +57,9 @@ def create_content_bleu_distribution_dataset(latex_folder, mml_folder):
         else:
             category = f"{ll}-more"
 
-        con_tgt = open(f"{mbase}/length_based_distribution/tgt-test-{category}.lst", "w")
-        con_src = open(f"{mbase}/length_based_distribution/src-test-{category}.lst", "w")
-        cat_src = open(f"{lbase}/length_based_distribution/src-test-{category}.lst").readlines()
+        con_tgt = open(f"{mbase}/content_based_distribution/tgt-test-{category}.lst", "w")
+        con_src = open(f"{mbase}/content_based_distribution/src-test-{category}.lst", "w")
+        cat_src = open(f"{lbase}/content_based_distribution/src-test-{category}.lst").readlines()
 
         for cs in cat_src:
             cat_idx = src.index(cs)
@@ -69,8 +69,8 @@ def create_content_bleu_distribution_dataset(latex_folder, mml_folder):
 
 
 if __name__=="__main__":
-    # for f in ["im2latex-100K", "im2mml-100K", "olatex-100K", "omml-100K"]:
-    #     create_length_bleu_distribution_dataset(f)
+    for f in ["im2latex-100K", "im2mml-100K", "olatex-100K", "omml-100K"]:
+        create_length_bleu_distribution_dataset(f)
 
     create_content_bleu_distribution_dataset("olatex-100K", "omml-100K")
     create_content_bleu_distribution_dataset("im2latex-100K", "im2mml-100K")
