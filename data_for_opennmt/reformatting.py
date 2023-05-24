@@ -98,7 +98,7 @@ def reformat():
         TGT = open(src+f"/im2mml-100K/tgt-{tt}.lst").readlines()
         for s,t in zip(SRC,TGT):
             dst_mml.write(t)
-            shutil.copyfile(src+"/images_processed/"+s, dst+"/images/"+count+".png")
+            shutil.copyfile(src+"/images_processed/"+s, dst+"/images/"+str(count)+".png")
             count+=1
 
     print("reformatting for odata im2data done!...")
