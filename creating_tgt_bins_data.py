@@ -8,15 +8,15 @@ def create_length_bleu_distribution_dataset(folder):
     if not os.path.exists(os.path.join(base, "length_bleu_distribution")):
         os.mkdir(os.path.join(base, "length_bleu_distribution"))
 
-    tgt = open(f"{base}/tgt-test.txt").readlines()
-    src = open(f"/home/skema/img2mml/gauravs_data_for_paper/data/opennmt/{folder}/src-test.txt").readlines()
+    tgt = open(f"{base}/tgt-test.lst").readlines()
+    src = open(f"{base}/src-test.lst").readlines()
 
     for ll in lenlist:
         if ll!=350:
             category = f"{ll}-{ll+50}"
             print(f"{folder}-{category}")
-            cat_tgt = open(f"{base}/length_bleu_distribution/tgt-test-{category}.txt", "w")
-            cat_src = open(f"{base}/length_bleu_distribution/src-test-{category}.txt", "w")
+            cat_tgt = open(f"{base}/length_bleu_distribution/tgt-test-{category}.lst", "w")
+            cat_src = open(f"{base}/length_bleu_distribution/src-test-{category}.lst", "w")
 
             for (t,s) in zip(tgt, src):
                 length = len(t.split())
@@ -26,8 +26,8 @@ def create_length_bleu_distribution_dataset(folder):
         else:
             category = f"{ll}-more"
             print(category)
-            cat_tgt = open(f"{path}/length_bleu_distribution/tgt-test-{category}.txt", "w")
-            cat_src = open(f"{path}/length_bleu_distribution/src-test-{category}.txt", "w")
+            cat_tgt = open(f"{path}/length_bleu_distribution/tgt-test-{category}.lst", "w")
+            cat_src = open(f"{path}/length_bleu_distribution/src-test-{category}.lst", "w")
 
             for (t,s) in zip(tgt, src):
                 length = len(t.split())
