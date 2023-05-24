@@ -26,8 +26,8 @@ def create_length_bleu_distribution_dataset(folder):
         else:
             category = f"{ll}-more"
             print(category)
-            cat_tgt = open(f"{path}/length_bleu_distribution/tgt-test-{category}.lst", "w")
-            cat_src = open(f"{path}/length_bleu_distribution/src-test-{category}.lst", "w")
+            cat_tgt = open(f"{base}/length_bleu_distribution/tgt-test-{category}.lst", "w")
+            cat_src = open(f"{base}/length_bleu_distribution/src-test-{category}.lst", "w")
 
             for (t,s) in zip(tgt, src):
                 length = len(t.split())
