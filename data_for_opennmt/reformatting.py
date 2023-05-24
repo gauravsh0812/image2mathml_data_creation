@@ -94,10 +94,14 @@ def reformat():
 
     count = 0
     for tt in ["train", "test", "validate"]:
-        SRC = open(src+f"/im2mml-100K/src-{tt}.lst").readlines()
-        TGT = open(src+f"/im2mml-100K/tgt-{tt}.lst").readlines()
-        for s,t in zip(SRC,TGT):
-            dst_mml.write(t)
+        MSRC = open(src+f"/im2mml-100K/src-{tt}.lst").readlines()
+        MTGT = open(src+f"/im2mml-100K/tgt-{tt}.lst").readlines()
+        LSRC = open(src+f"/im2latex-100K/src-{tt}.lst").readlines()
+        LTGT = open(src+f"/im2latex-100K/tgt-{tt}.lst").readlines()
+        for ms,mt,ls,lt in zip(MSRC,MTGT,LSRC,LTGT):
+            assert ms==ls
+            dst_mml.write(mt)
+            dst_latex.write(lt)
             shutil.copyfile(src+"/images_processed/"+s.replace("\n", ""), dst+"/images/"+str(count)+".png")
             count+=1
 
