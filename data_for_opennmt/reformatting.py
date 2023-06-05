@@ -99,11 +99,12 @@ def reformat():
         LSRC = open(src+f"/im2latex-100K/src-{tt}.lst").readlines()
         LTGT = open(src+f"/im2latex-100K/tgt-{tt}.lst").readlines()
         for ms,mt,ls,lt in zip(MSRC,MTGT,LSRC,LTGT):
-            
+
             assert ms.strip()==ls.strip()
             dst_mml.write(mt)
             dst_latex.write(lt)
             shutil.copyfile(src+"/images_processed/"+ms.replace("\n", ""), dst+"/images/"+str(count)+".png")
             count+=1
+
 
     print("reformatting for odata im2data done!...")
