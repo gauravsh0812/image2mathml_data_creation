@@ -78,7 +78,7 @@ datasets
             paths.lst
 
         im2data
-            images_processed
+            images_processed (saved as images)
             image_tensors (will be created when preprocess the data)
             original_mml/latex.lst
             mml/latex.lst

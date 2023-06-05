@@ -216,7 +216,7 @@ def remove_unecc_tokens(eqn):
     """
     eliminate = [
         "mspace",
-        "mtable",
+        # "mtable",
         "mathvariant",
         "class",
         "mpadded",
@@ -235,7 +235,7 @@ def remove_unecc_tokens(eqn):
         "mstyle",
     ]
 
-    keep = ["mo", "mi", "mfrac", "mn", "mrow"]
+    keep = ["mo", "mi", "mfrac", "mn", "mrow", "mtr", "mtd"]
 
     for e in eliminate:
         if e in eqn:
