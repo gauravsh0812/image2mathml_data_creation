@@ -129,32 +129,42 @@ def latex2mml():
             idx, img, _ = v.split()
 
             latex = formulas[int(idx)]
+            
+            # ======= AVOIDING LARGE VERTICALLY STACKED EQUATIONS ============= #
+            if ("begin{array}" in latex) \
+                or ("begin{align}" in latex) \
+                or ("begin{aligned}") in latex \
+                and len(latex) >= 200:
 
-            mml = MjxMML(latex)
-            if mml != None:
-                open("mml_org.txt", "w").write(mml)
-                cmd = ["python", f"{os.getcwd()}/simplify.py"]
-                output = subprocess.Popen(
-                    cmd, stderr=subprocess.PIPE, stdout=subprocess.PIPE
-                )
-                my_timer = Timer(5, kill, [output])
+                pass 
 
-                try:
-                    my_timer.start()
-                    stdout, stderr = output.communicate()
-                    org_mml.write(mml + "\n")
-                    smml = open("mml_mod.txt").readlines()[0].strip()
-                    simp_mml.write(smml + "\n")
-                    f_mml.write(f"{count} {img} basic" + "\n")
-                    f_mml_src.write(f"{img}.png\n")
-                    f_mml_tgt.write(f"{smml}\n")
-                    count += 1
+            else:
 
-                except:
-                    rejected += 1
+                mml = MjxMML(latex)
+                if mml != None:
+                    open("mml_org.txt", "w").write(mml)
+                    cmd = ["python", f"{os.getcwd()}/simplify.py"]
+                    output = subprocess.Popen(
+                        cmd, stderr=subprocess.PIPE, stdout=subprocess.PIPE
+                    )
+                    my_timer = Timer(5, kill, [output])
 
-                finally:
-                    my_timer.cancel()
+                    try:
+                        my_timer.start()
+                        stdout, stderr = output.communicate()
+                        org_mml.write(mml + "\n")
+                        smml = open("mml_mod.txt").readlines()[0].strip()
+                        simp_mml.write(smml + "\n")
+                        f_mml.write(f"{count} {img} basic" + "\n")
+                        f_mml_src.write(f"{img}.png\n")
+                        f_mml_tgt.write(f"{smml}\n")
+                        count += 1
+
+                    except:
+                        rejected += 1
+
+                    finally:
+                        my_timer.cancel()
 
 
         f_mml.close()
