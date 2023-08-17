@@ -131,11 +131,7 @@ def latex2mml():
             latex = formulas[int(idx)]
             
             # ======= AVOIDING LARGE VERTICALLY STACKED EQUATIONS ============= #
-            if ("begin{array}" in latex) \
-                or ("begin{align}" in latex) \
-                or ("begin{aligned}") in latex \
-                and len(latex) >= 200:
-
+            if ("begin{array}" in latex) and len(latex) >= 200:
                 pass 
 
             else:
