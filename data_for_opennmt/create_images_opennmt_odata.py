@@ -4,6 +4,9 @@ import shutil
 def no_blank_data():
     images = "/home/skema/img2mml/gauravs_data_for_paper/data/odata/our_sampled_data/images"
     new_images = "/home/skema/img2mml/gauravs_data_for_paper/data/opennmt/oimages"
+    if not os.path.exists(new_images):
+        os.mkdir(new_images)
+        
     blank =  open("/home/skema/img2mml/gauravs_data_for_paper/data/opennmt/our_blank_images.txt").readlines()
     blank_idx = [int(i.split(".")[0]) for i in blank]
 
