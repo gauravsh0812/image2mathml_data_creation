@@ -7,6 +7,9 @@ def reformat():
     # ------------------------------------
     src = "/home/skema/img2mml/gauravs_data_for_paper/data/odata/our_sampled_data"
     dst = "/home/skema/img2mml/gauravs_data_for_paper/data/opennmt/olatex-100K"
+    if not os.path.exists(dst):
+        os.mkdir(dst)
+
     shutil.copyfile(src+"/no_blank_original_latex.lst", dst+"/original_latex.lst")
     shutil.copyfile(src+"/latex.lst", dst+"/latex.lst")
 
@@ -46,6 +49,9 @@ def reformat():
     # ------------------------------------
     src = "/home/skema/img2mml/gauravs_data_for_paper/data/odata/our_sampled_data"
     dst = "/home/skema/img2mml/gauravs_data_for_paper/data/opennmt/omml-100K"
+    if not os.path.exists(dst):
+        os.mkdir(dst)
+
     shutil.copyfile(src+"/original_mml.lst", dst+"/original_mml.lst")
     shutil.copyfile(src+"/mml.lst", dst+"/mml.lst")
 
@@ -87,6 +93,9 @@ def reformat():
     # ------------------------------------
     src = "/home/skema/img2mml/gauravs_data_for_paper/data/opennmt/"
     dst = "/home/skema/img2mml/gauravs_data_for_paper/data/odata/im2data"
+    if not os.path.exists(dst):
+        os.mkdir(dst)
+        
     dst_mml, dst_latex = open(dst+"/mml.lst", "w"), open(dst+"/latex.lst", "w")
 
     if not os.path.exists(dst+"/images"):

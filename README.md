@@ -16,13 +16,12 @@ All the data will be under /home/skema/img2mml/gauravs_data_for_paper/data
     as odata/our_sampled_data.
 
 Before proceeding, let's copy all the relevant image folders to respective
-directories to create final structure as mention below.
-
-for opennmt create a new image folder that will not contain any blank image from our dataset.
+directories to create final structure as mention below. For opennmt create a new image folder that will
+not contain any blank image from our dataset named `oimages`.
 Make sure you have the "blank_images log" under `data/opennmt/` as `our_blank_images.txt`.
 6) move the "sampled_data" to "odata" as `our_sampled_data`. Then `python run.py remove_blank_data`
 6a) preprocess the "no_blank_original_latex.lst" using opennmt-lua and rename it to latex.lst.
-use `cd opennmt/OpenNMT-Lua/python scripts/preprocessing/preprocess_formulas.py --mode normalize --input-file /home/skema/img2mml/gauravs_data_for_paper/data/odata/our_sampled_data/no_blank_original_latex.lst --output-file /home/skema/img2mml/gauravs_data_for_paper/data/odata/our_sampled_data/latex.lst`
+use `cd opennmt/OpenNMT-Lua/; python scripts/preprocessing/preprocess_formulas.py --mode normalize --input-file /home/skema/img2mml/gauravs_data_for_paper/data/odata/our_sampled_data/no_blank_original_latex.lst --output-file /home/skema/img2mml/gauravs_data_for_paper/data/odata/our_sampled_data/latex.lst`
 
 7) run `python run.py reformatting` to create dataset: omml_nK/olatex_nK for opennmt and im2data for odata.
 7a) copy opennmt/images_processed to odata/im2data manually (if needed, else the opennmt path can be used as src).
@@ -38,7 +37,7 @@ datasets
     opennmt
         images_processed (cp from im2latex-103K)
         oimages (create using create_images_opennmt_odata, removing blank images)
-        odata_blank_images.txt
+        our_blank_images.txt
         im2data_distributions
         im2mml-100K
             original_mml.lst
