@@ -17,8 +17,9 @@ All the data will be under /home/skema/img2mml/gauravs_data_for_paper/data
 
 Before proceeding, let's copy all the relevant image folders to respective
 directories to create final structure as mention below. For opennmt create a new image folder that will
-not contain any blank image from our dataset named `oimages`.
+not contain any blank image from our dataset named `oimages` using `create_images_opennmt_odata.py`.
 Make sure you have the "blank_images log" under `data/opennmt/` as `our_blank_images.txt`.
+
 6) move the "sampled_data" to "odata" as `our_sampled_data`. Then `python run.py remove_blank_data`
 6a) preprocess the "no_blank_original_latex.lst" using opennmt-lua and rename it to latex.lst.
 use `cd opennmt/OpenNMT-Lua/; python scripts/preprocessing/preprocess_formulas.py --mode normalize --input-file /home/skema/img2mml/gauravs_data_for_paper/data/odata/our_sampled_data/no_blank_original_latex.lst --output-file /home/skema/img2mml/gauravs_data_for_paper/data/odata/our_sampled_data/latex.lst`
@@ -36,7 +37,8 @@ datasets
     im2latex-103K
     opennmt
         images_processed (cp from im2latex-103K)
-        oimages (create using create_images_opennmt_odata, removing blank images)
+        oimages (create using create_images_opennmt_odata, removing blank images. No need to preprocess them using OpenNMT script.)
+        
         our_blank_images.txt
         im2data_distributions
         im2mml-100K
@@ -78,6 +80,6 @@ datasets
 
         im2data
             images_processed (saved as images)
-            image_tensors (will be created when preprocess the data)
-            original_mml/latex.lst
+            image_tensors (will be created when preprocess the data while running model)
+            original_mml/latex.lst ( no need to be there!!)
             mml/latex.lst

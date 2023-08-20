@@ -149,8 +149,13 @@ def latex2mml():
                     # To defone a single latex token in MathML, we will 
                     # atleast require 3 tokens. Therefore, any MML equation
                     # with #tokens < #latex tokens, can be considered corrupted.
-                    
-                    if len(latex.split()) > len(smml.split()):
+                    # also, removing blank eqns.
+
+                    smml_temp = smml.replace('<math display="block">',"")
+
+                    if len(smml_temp.split()) <= 2:
+                        rejected += 1
+                    elif len(latex.split()) > len(smml.split()):
                         rejected+=1
                     else:
                         simp_mml.write(smml + "\n")
