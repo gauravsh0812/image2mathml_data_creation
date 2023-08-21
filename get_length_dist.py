@@ -1,13 +1,11 @@
 import json, os, sys
 
-data_type = sys.argv[-1]
+def get_distribution_opennmt(base_path):
+    im2latex_103K = open(f"{base_path}/im2latex-103K/formulas.norm.lst").readlines()
+    im2latex_100K = open(f"{base_path}/opennmt/im2latex-100K/latex.lst").readlines()
+    im2mml_100K = open(f"{base_path}/opennmt/im2mml-100K/mml.lst").readlines()
 
-def get_distribution_opennmt():
-    im2latex_103K = open("/home/skema/img2mml/gauravs_data_for_paper/data/im2latex-103K/formulas.norm.lst").readlines()
-    im2latex_100K = open("/home/skema/img2mml/gauravs_data_for_paper/data/opennmt/im2latex-100K/latex.lst").readlines()
-    im2mml_100K = open("/home/skema/img2mml/gauravs_data_for_paper/data/opennmt/im2mml-100K/mml.lst").readlines()
-
-    p = "/home/skema/img2mml/gauravs_data_for_paper/data/opennmt/im2data_distributions"
+    p = f"{base_path}/opennmt/im2data_distributions"
     if not os.path.exists(p):
         os.mkdir(p)
 
@@ -47,16 +45,16 @@ def get_distribution_opennmt():
                         d["350+"] += 1
 
         # save the distribution
-        if i==0: json.dump(d, open("/home/skema/img2mml/gauravs_data_for_paper/data/opennmt/im2data_distributions/im2latex-103K-length-dist.json", "w"))
-        elif i==1: json.dump(d, open("/home/skema/img2mml/gauravs_data_for_paper/data/opennmt/im2data_distributions/im2latex-100K-length-dist.json", "w"))
-        else: json.dump(d, open("/home/skema/img2mml/gauravs_data_for_paper/data/opennmt/im2data_distributions/im2mml-100K-length-dist.json", "w"))
+        if i==0: json.dump(d, open(f"{base_path}/opennmt/im2data_distributions/im2latex-103K-length-dist.json", "w"))
+        elif i==1: json.dump(d, open(f"{base_path}/opennmt/im2data_distributions/im2latex-100K-length-dist.json", "w"))
+        else: json.dump(d, open(f"{base_path}/opennmt/im2data_distributions/im2mml-100K-length-dist.json", "w"))
 
 
-def get_distribution_odata():
-    olatex_100K = open("/home/skema/img2mml/gauravs_data_for_paper/data/opennmt/olatex-100K/latex.lst").readlines()
-    omml_100K = open("/home/skema/img2mml/gauravs_data_for_paper/data/opennmt/omml-100K/mml.lst").readlines()
+def get_distribution_odata(base_path):
+    olatex_100K = open(f"{base_path}/opennmt/olatex-100K/latex.lst").readlines()
+    omml_100K = open(f"{base_path}/opennmt/omml-100K/mml.lst").readlines()
 
-    p = "/home/skema/img2mml/gauravs_data_for_paper/data/opennmt/im2data_distributions"
+    p = f"{base_path}/opennmt/im2data_distributions"
     if not os.path.exists(p):
         os.mkdir(p)
 
@@ -94,11 +92,5 @@ def get_distribution_odata():
                         d["350+"] += 1
 
         # save the distribution
-        if i==0: json.dump(d, open("/home/skema/img2mml/gauravs_data_for_paper/data/opennmt/im2data_distributions/olatex-100K-length-dist.json", "w"))
-        else: json.dump(d, open("/home/skema/img2mml/gauravs_data_for_paper/data/opennmt/im2data_distributions/omml-100K-length-dist.json", "w"))
-
-
-if data_type == "opennmt":
-    get_distribution_opennmt()
-elif data_type == "odata":
-    get_distribution_odata()
+        if i==0: json.dump(d, open(f"{base_path}/opennmt/im2data_distributions/olatex-100K-length-dist.json", "w"))
+        else: json.dump(d, open(f"{base_path}/opennmt/im2data_distributions/omml-100K-length-dist.json", "w"))
