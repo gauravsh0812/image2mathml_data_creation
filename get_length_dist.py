@@ -36,7 +36,7 @@ def get_distribution_opennmt(base_path):
             for k in keys:
                 if k != "350+":
                     begin, end = k.split("-")
-                    if (length > int(begin)) and (length <= int(end)):
+                    if (length >= int(begin)) and (length < int(end)):
                         d[k] += 1
                         flag350 = True
 
@@ -83,7 +83,7 @@ def get_distribution_odata(base_path):
             for k in keys:
                 if k != "350+":
                     begin, end = k.split("-")
-                    if (length > int(begin)) and (length <= int(end)):
+                    if (length >= int(begin)) and (length < int(end)):
                         d[k] += 1
                         flag350 = True
 
