@@ -1,6 +1,7 @@
 import os
 
-blank = [int(i.split(".")[0].strip()) for i in open("/home/gauravs/github/skema/skema/img2mml/logs/blank_images.lst").readlines()]
+base_path = "/home/skema/img2mml/gauravs_data_for_paper/data/"
+blank = [int(i.split(".")[0].strip()) for i in open(f"{base_path}/opennmt/our_blank_images.txt").readlines()]
 
 nl = open("new_latex.lst", "w")
 l = open("latex.lst").readlines()

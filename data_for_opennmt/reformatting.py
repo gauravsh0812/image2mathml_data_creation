@@ -1,12 +1,13 @@
 import os
 import shutil
 
-def reformat():
+def reformat(base_path):
+
     # ------------------------------------
     # reformatting for opennmt olatex
     # ------------------------------------
-    src = "/home/skema/img2mml/gauravs_data_for_paper/data/odata/our_sampled_data"
-    dst = "/home/skema/img2mml/gauravs_data_for_paper/data/opennmt/olatex-100K"
+    src = f"{base_path}/odata/our_sampled_data"
+    dst = f"{base_path}/opennmt/olatex-100K"
     if not os.path.exists(dst):
         os.mkdir(dst)
 
@@ -47,8 +48,8 @@ def reformat():
     # ------------------------------------
     # reformatting for opennmt omml
     # ------------------------------------
-    src = "/home/skema/img2mml/gauravs_data_for_paper/data/odata/our_sampled_data"
-    dst = "/home/skema/img2mml/gauravs_data_for_paper/data/opennmt/omml-100K"
+    src = f"{base_path}/odata/our_sampled_data"
+    dst = f"{base_path}/opennmt/omml-100K"
     if not os.path.exists(dst):
         os.mkdir(dst)
 
@@ -91,11 +92,11 @@ def reformat():
     # ------------------------------------
     # reformatting for odata im2data
     # ------------------------------------
-    src = "/home/skema/img2mml/gauravs_data_for_paper/data/opennmt/"
-    dst = "/home/skema/img2mml/gauravs_data_for_paper/data/odata/im2data"
+    src = f"{base_path}/opennmt/"
+    dst = f"{base_path}/odata/im2data"
     if not os.path.exists(dst):
         os.mkdir(dst)
-        
+
     dst_mml, dst_latex = open(dst+"/mml.lst", "w"), open(dst+"/latex.lst", "w")
 
     if not os.path.exists(dst+"/images"):

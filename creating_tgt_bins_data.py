@@ -1,10 +1,10 @@
 import os
 
-def create_length_bleu_distribution_dataset(folder):
+def create_length_bleu_distribution_dataset(folder, base_path):
 
     lenlist = [0, 50, 100, 150, 200, 250, 300, 350]
 
-    base = f"/home/skema/img2mml/gauravs_data_for_paper/data/opennmt/{folder}"
+    base = f"{base_path}/opennmt/{folder}"
 
     if not os.path.exists(os.path.join(base, "length_based_distribution")):
         os.mkdir(os.path.join(base, "length_based_distribution"))
@@ -43,10 +43,10 @@ def create_length_bleu_distribution_dataset(folder):
                     cat_src.write(s)
 
 
-def create_content_bleu_distribution_dataset(latex_folder, mml_folder):
+def create_content_bleu_distribution_dataset(latex_folder, mml_folder, base_path):
 
-    lbase = f"/home/skema/img2mml/gauravs_data_for_paper/data/opennmt/{latex_folder}"
-    mbase = f"/home/skema/img2mml/gauravs_data_for_paper/data/opennmt/{mml_folder}"
+    lbase = f"{base_path}/opennmt/{latex_folder}"
+    mbase = f"{base_path}/opennmt/{mml_folder}"
     tgt = open(f"{mbase}/tgt-test.lst").readlines()
     src = open(f"{lbase}/src-test.lst").readlines()
 
@@ -69,8 +69,11 @@ def create_content_bleu_distribution_dataset(latex_folder, mml_folder):
 
 
 if __name__=="__main__":
-    for f in ["im2latex-100K", "im2mml-100K", "olatex-100K", "omml-100K"]:
-        create_length_bleu_distribution_dataset(f)
+    
+    base_path = "/home/gauravs/data"
 
-    create_content_bleu_distribution_dataset("olatex-100K", "omml-100K")
-    create_content_bleu_distribution_dataset("im2latex-100K", "im2mml-100K")
+    for f in ["im2latex-100K", "im2mml-100K", "olatex-100K", "omml-100K"]:
+        create_length_bleu_distribution_dataset(f, base_path)
+
+    create_content_bleu_distribution_dataset("olatex-100K", "omml-100K", base_path)
+    create_content_bleu_distribution_dataset("im2latex-100K", "im2mml-100K", base_path)

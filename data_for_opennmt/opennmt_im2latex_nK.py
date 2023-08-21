@@ -1,16 +1,17 @@
 import os
 
-def im2mml_2_im2latex():
-    latex_formulas_original = open("/home/skema/img2mml/gauravs_data_for_paper/data/im2latex-103K/formulas.norm.lst").readlines()
-    latex_formulas_nK = open(f"/home/skema/img2mml/gauravs_data_for_paper/data/opennmt/im2latex-100K/latex.lst", "w")
+def im2mml_2_im2latex(base_path):
+    
+    latex_formulas_original = open(f"{base_path}/im2latex-103K/formulas.norm.lst").readlines()
+    latex_formulas_nK = open(f"{base_path}/opennmt/im2latex-100K/latex.lst", "w")
 
-    if not os.path.exists("/home/skema/img2mml/gauravs_data_for_paper/data/opennmt/im2latex-100K"):
-        os.mkdir("/home/skema/img2mml/gauravs_data_for_paper/data/opennmt/im2latex-100K")
+    if not os.path.exists(f"{base_path}/opennmt/im2latex-100K"):
+        os.mkdir(f"{base_path}/opennmt/im2latex-100K")
 
     # creating the dictionary for the index:image_name for original im2latex
     idx_img = dict()
     for t in ["train", "test", "validate"]:
-        t_im2latex_org = open(f"/home/skema/img2mml/gauravs_data_for_paper/data/im2latex-103K/{t}.lst").readlines()
+        t_im2latex_org = open(f"{base_path}/im2latex-103K/{t}.lst").readlines()
         for i in t_im2latex_org:
             idx, img, _ = i.split()
             idx_img[img] = idx
@@ -18,15 +19,15 @@ def im2mml_2_im2latex():
     count = 0
     for t in ["train", "test", "validate"]:
         print(t)
-        t_im2mml = open(f"/home/skema/img2mml/gauravs_data_for_paper/data/opennmt/im2mml-100K/{t}.lst").readlines()
-        t_im2latex_org = open(f"/home/skema/img2mml/gauravs_data_for_paper/data/im2latex-103K/{t}.lst").readlines()
+        t_im2mml = open(f"{base_path}/opennmt/im2mml-100K/{t}.lst").readlines()
+        t_im2latex_org = open(f"{base_path}/im2latex-103K/{t}.lst").readlines()
 
         # combined file
-        t_im2latex = open(f"/home/skema/img2mml/gauravs_data_for_paper/data/opennmt/im2latex-100K/{t}.lst", "w")
+        t_im2latex = open(f"{base_path}/opennmt/im2latex-100K/{t}.lst", "w")
 
         # src  and tgt file
-        t_im2latex_src = open(f"/home/skema/img2mml/gauravs_data_for_paper/data/opennmt/im2latex-100K/src-{t}.lst", "w")
-        t_im2latex_tgt = open(f"/home/skema/img2mml/gauravs_data_for_paper/data/opennmt/im2latex-100K/tgt-{t}.lst", "w")
+        t_im2latex_src = open(f"{base_path}/opennmt/im2latex-100K/src-{t}.lst", "w")
+        t_im2latex_tgt = open(f"{base_path}/opennmt/im2latex-100K/tgt-{t}.lst", "w")
 
         for i,v in enumerate(t_im2mml):
             if i%1000 == 0: print(i)

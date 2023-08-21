@@ -99,27 +99,27 @@ def MjxMML(eqn):
     else:
         return None
 
-def latex2mml():
+def latex2mml(base_path):
 
-    formulas = open("/home/skema/img2mml/gauravs_data_for_paper/data/im2latex-103K/formulas.norm.lst").readlines()
-    train = open("/home/skema/img2mml/gauravs_data_for_paper/data/im2latex-103K/train.lst").readlines()
-    test = open("/home/skema/img2mml/gauravs_data_for_paper/data/im2latex-103K/test.lst").readlines()
-    val = open("/home/skema/img2mml/gauravs_data_for_paper/data/im2latex-103K/validate.lst").readlines()
+    formulas = open(f"{base_path}/im2latex-103K/formulas.norm.lst").readlines()
+    train = open(f"{base_path}/im2latex-103K/train.lst").readlines()
+    test = open(f"{base_path}/im2latex-103K/test.lst").readlines()
+    val = open(f"{base_path}/im2latex-103K/validate.lst").readlines()
 
-    if not os.path.exists("/home/skema/img2mml/gauravs_data_for_paper/data/opennmt"):
-        os.mkdir("/home/skema/img2mml/gauravs_data_for_paper/data/opennmt")
-    if not os.path.exists("/home/skema/img2mml/gauravs_data_for_paper/data/opennmt/im2mml-100K"):
-        os.mkdir("/home/skema/img2mml/gauravs_data_for_paper/data/opennmt/im2mml-100K")
+    if not os.path.exists(f"{base_path}/opennmt"):
+        os.mkdir(f"{base_path}/opennmt")
+    if not os.path.exists(f"{base_path}/opennmt/im2mml-100K"):
+        os.mkdir(f"{base_path}/opennmt/im2mml-100K")
 
-    org_mml = open("/home/skema/img2mml/gauravs_data_for_paper/data/opennmt/im2mml-100K/original_mml.lst", "w")
-    simp_mml = open("/home/skema/img2mml/gauravs_data_for_paper/data/opennmt/im2mml-100K/mml.lst", "w")
+    org_mml = open(f"{base_path}/opennmt/im2mml-100K/original_mml.lst", "w")
+    simp_mml = open(f"{base_path}/opennmt/im2mml-100K/mml.lst", "w")
 
     count, rejected = 0,0
     for fidx, f in enumerate([train, test, val]):
         arr = ["train", "test", "validate"]
-        f_mml = open(f"/home/skema/img2mml/gauravs_data_for_paper/data/opennmt/im2mml-100K/{arr[fidx]}.lst", "w")
-        f_mml_src = open(f"/home/skema/img2mml/gauravs_data_for_paper/data/opennmt/im2mml-100K/src-{arr[fidx]}.lst", "w")
-        f_mml_tgt = open(f"/home/skema/img2mml/gauravs_data_for_paper/data/opennmt/im2mml-100K/tgt-{arr[fidx]}.lst", "w")
+        f_mml = open(f"{base_path}/opennmt/im2mml-100K/{arr[fidx]}.lst", "w")
+        f_mml_src = open(f"{base_path}/opennmt/im2mml-100K/src-{arr[fidx]}.lst", "w")
+        f_mml_tgt = open(f"{base_path}/opennmt/im2mml-100K/tgt-{arr[fidx]}.lst", "w")
 
         print(f"working on {arr[fidx]}")
 

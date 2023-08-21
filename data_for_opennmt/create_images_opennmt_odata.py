@@ -1,13 +1,13 @@
 import os
 import shutil
 
-def no_blank_data():
-    images = "/home/skema/img2mml/gauravs_data_for_paper/data/odata/our_sampled_data/images"
-    new_images = "/home/skema/img2mml/gauravs_data_for_paper/data/opennmt/oimages"
+def no_blank_data(base_path):
+    images = f"{base_path}/odata/our_sampled_data/images"
+    new_images = f"{base_path}/opennmt/oimages"
     if not os.path.exists(new_images):
         os.mkdir(new_images)
-        
-    blank =  open("/home/skema/img2mml/gauravs_data_for_paper/data/opennmt/our_blank_images.txt").readlines()
+
+    blank =  open(f"{base_path}/opennmt/our_blank_images.txt").readlines()
     blank_idx = [int(i.split(".")[0]) for i in blank]
 
     count = 0
@@ -23,8 +23,8 @@ def no_blank_data():
     # redefining original-latex file by eliminating latex correspoding to blank file.
     # -------------------------------------------------------------------------------
 
-    org_latex = open("/home/skema/img2mml/gauravs_data_for_paper/data/odata/our_sampled_data/original_latex.lst").readlines()
-    new_latex = open("/home/skema/img2mml/gauravs_data_for_paper/data/odata/our_sampled_data/no_blank_original_latex.lst", "w")
+    org_latex = open(f"{base_path}/odata/our_sampled_data/original_latex.lst").readlines()
+    new_latex = open(f"{base_path}/odata/our_sampled_data/no_blank_original_latex.lst", "w")
 
     for i in range(len(org_latex)):
         if i not in blank_idx:
