@@ -30,6 +30,9 @@ use `cd opennmt/OpenNMT-Lua/; python scripts/preprocessing/preprocess_formulas.p
     a) length_wise_separation - separate latex and mml tgt files into len wise bins.
     b) content_wise_separation - separate latex into len wise bins and place correspoding mmls.
     Run `python creating_tgt_bins_data.py`
+10) Finally, run  `python preprocessing/preprocess_images.py --config configs/xfmer_mml_config.json` for im2data images.
+    a) Once it is run, copy the `logs/blank_images.txt` to `odata/im2data` directory and named it as `im2data_blank_images.txt`.
+    b) run `python run.py clean_odata_im2data`.
 
 Final structure of the datasets should look like:
 datasets
